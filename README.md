@@ -16,18 +16,18 @@ Clone libui inside pylibui:
 
 Make the libui shared library:
 
-    $ cd pylibui/libui
+    $ cd libui
     $ make
 
 The shared library will be in pylibui/libui/out. Now you can build pylibui:
 
-    $ cd pylibui
+    $ cd ..
     $ python3 setup.py build
 
 The pylibui shared library will be in pylibui/build/libxxx. Cd into that
 directory and try to import it:
 
-    $ cd pylibui/build/libxxx
+    $ cd build/libxxx
     $ python3
     >>> import pylibui
     Traceback (most recent call last):
@@ -37,7 +37,6 @@ directory and try to import it:
 
 You have to explicitely say where libui's shared library is:
 
-    $ cd pylibui/build/libxxx
     $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../../libui/out/
     $ python3
     >>> import pylibui
