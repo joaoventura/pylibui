@@ -1,2 +1,3 @@
 # pylibui
-Python wrapper for libui
+
+Python wrapper for [libui](https://github.com/andlabs/libui/).
