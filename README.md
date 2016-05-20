@@ -5,21 +5,42 @@ Python wrapper for [libui](https://github.com/andlabs/libui/).
 
 ## Some instructions
 
-Clone libui to pylib/libui and run make. The shared library will be inside
-pylib/libui/out.
+Clone pylibui:
 
-Run "python3 setup.py build" and find the python extension in pylibui/build/lib.
-If you try to import it on the build/lib directory will fail because it will
-not be able to find the libui shared library. To do that, you will have to
-say where the libui shared library is.
+    $ git clone https://github.com/joaoventura/pylibui
 
-    $ cd <path>/pylibui/build/libxxx/
-    $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../../libui/out/
+Clone libui inside pylibui:
 
-Now you can run the Python3 interpreter and run the test function:
+    $ cd pylibui
+    $ git clone https://github.com/andlabs/libui/
 
+Make the libui shared library:
+
+    $ cd pylibui/libui
+    $ make
+
+The shared library will be in pylibui/libui/out. Now you can build pylibui:
+
+    $ cd pylibui
+    $ python3 setup.py build
+
+The pylibui shared library will be in pylibui/build/libxxx. Cd into that
+directory and try to import it:
+
+    $ cd pylibui/build/libxxx
     $ python3
-    > import pylibui
-    > pylibui.test()
+    >>> import pylibui
+    Traceback (most recent call last):
+        File "<stdin>", line 1, in <module>
+    ImportError: dlopen(...)
+        Reason: image not found
 
-If everything went fine, you'll be able to see a window with a Hello World label.
+You have to explicitely say where libui's shared library is:
+
+    $ cd pylibui/build/libxxx
+    $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../../libui/out/
+    $ python3
+    >>> import pylibui
+    >>> pylibui.test()
+
+You should see a window with a simple "Hello World" label.
