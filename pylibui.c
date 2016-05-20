@@ -7,15 +7,15 @@ static uiWindow *mainwin;
 
 static int onClosing(uiWindow *w, void *data)
 {
-	uiControlDestroy(uiControl(mainwin));
-	uiQuit();
-	return 0;
+    uiControlDestroy(uiControl(mainwin));
+    uiQuit();
+    return 0;
 }
 
 static int shouldQuit(void *data)
 {
-	uiControlDestroy(uiControl(mainwin));
-	return 1;
+    uiControlDestroy(uiControl(mainwin));
+    return 1;
 }
 
 static PyObject *
@@ -32,9 +32,9 @@ pylibui_test(PyObject *self)
     memset(&o, 0, sizeof (uiInitOptions));
     err = uiInit(&o);
     if (err != NULL) {
-    	fprintf(stderr, "error initializing ui: %s\n", err);
-    	uiFreeInitError(err);
-    	Py_RETURN_NONE;
+        fprintf(stderr, "error initializing ui: %s\n", err);
+        uiFreeInitError(err);
+        Py_RETURN_NONE;
     }
 
     menu = uiNewMenu("File");
@@ -62,18 +62,18 @@ pylibui_test(PyObject *self)
 
 static PyMethodDef PylibuiMethods[] = {
     {"test", (PyCFunction) pylibui_test, METH_VARARGS,
-     "Tests pylibui."},
+    "Tests pylibui."},
 
     {NULL, NULL, 0, NULL}
 };
 
 static struct PyModuleDef pylibuimodule = {
-   PyModuleDef_HEAD_INIT,
-   "pylibui",         /* name of module */
-   "pylibui",         /* module documentation, may be NULL */
-   -1,                /* size of per-interpreter state of the module,
-                         or -1 if the module keeps state in global variables. */
-   PylibuiMethods
+    PyModuleDef_HEAD_INIT,
+    "pylibui",      /* name of module */
+    "pylibui",      /* module documentation, may be NULL */
+    -1,             /* size of per-interpreter state of the module,
+                       or -1 if the module keeps state in global variables. */
+    PylibuiMethods
 };
 
 PyMODINIT_FUNC
