@@ -1,8 +1,16 @@
 from distutils.core import setup, Extension
 
-module = Extension('pylibui', sources = ['pylibui.c'])
+module = Extension(
+    'pylibui',
+    include_dirs = ['libui'],
+    libraries = ['ui'],
+    library_dirs = ['libui/out'],
+    sources = ['pylibui.c']
+)
 
-setup (name = 'pylibui',
-       version = '0.0.1',
-       description = 'Python wrapper for libui',
-       ext_modules = [module])
+setup(
+    name = 'pylibui',
+    version = '0.0.1',
+    description = 'Python wrapper for libui',
+    ext_modules = [module]
+)
