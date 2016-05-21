@@ -5,7 +5,7 @@ module = Extension(
     include_dirs = ['libui'],
     libraries = ['ui'],
     library_dirs = ['libui/out'],
-    sources = ['pylibui.c']
+    sources = ['src/pylibui.c']
 )
 
 setup(

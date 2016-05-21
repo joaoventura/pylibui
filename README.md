@@ -3,7 +3,16 @@
 Python wrapper for [libui](https://github.com/andlabs/libui/).
 
 
-## Some instructions
+## Usage
+
+    >>> import pylibui
+    >>> pylibui.init()
+    >>> pylibui.test()
+    >>> pylibui.main()
+    >>> pylibui.uninit()
+
+
+## Install instructions
 
 Clone pylibui:
 
@@ -35,7 +44,7 @@ directory and try to import it:
     ImportError: dlopen(...)
         Reason: image not found
 
-You have to explicitely say where libui's shared library is:
+You have to explicitely define where the system will find libui's shared lib.
 
     $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../../libui/out/
     $ python3

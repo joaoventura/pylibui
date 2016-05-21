@@ -3,6 +3,40 @@
 #include "ui.h"
 
 
+/* Initialization and main loop functions */
+
+static PyObject *
+pylibui_init(PyObject *self)
+{
+    uiInitOptions o;
+    const char *err;
+
+    memset(&o, 0, sizeof (uiInitOptions));
+    err = uiInit(&o);
+    if (err != NULL) {
+        fprintf(stderr, "error initializing ui: %s\n", err);
+        uiFreeInitError(err);
+    }
+
+    Py_RETURN_NONE;
+}
+
+static PyObject *
+pylibui_uninit(PyObject *self)
+{
+    uiUninit();
+    Py_RETURN_NONE;
+}
+
+static PyObject *
+pylibui_main(PyObject *self)
+{
+    uiMain();
+    Py_RETURN_NONE;
+}
+
+/* Test functions */
+
 static uiWindow *mainwin;
 
 static int onClosing(uiWindow *w, void *data)
@@ -21,21 +55,10 @@ static int shouldQuit(void *data)
 static PyObject *
 pylibui_test(PyObject *self)
 {
-
-    uiInitOptions o;
-    const char *err;
     uiMenu *menu;
     uiMenuItem *item;
     uiBox *box;
     uiLabel *label;
-
-    memset(&o, 0, sizeof (uiInitOptions));
-    err = uiInit(&o);
-    if (err != NULL) {
-        fprintf(stderr, "error initializing ui: %s\n", err);
-        uiFreeInitError(err);
-        Py_RETURN_NONE;
-    }
 
     menu = uiNewMenu("File");
     item = uiMenuAppendItem(menu, "Item");
@@ -54,13 +77,23 @@ pylibui_test(PyObject *self)
     uiBoxAppend(box, uiControl(label), 0);
 
     uiControlShow(uiControl(mainwin));
-    uiMain();
-    uiUninit();
 
     Py_RETURN_NONE;
 }
 
+/* Module level definitions */
+
 static PyMethodDef PylibuiMethods[] = {
+
+    // Initialization and main loop
+    {"init", (PyCFunction) pylibui_init, METH_VARARGS,
+    "Initializes pylibui."},
+    {"uninit", (PyCFunction) pylibui_uninit, METH_VARARGS,
+    "Uninitializes pylibui."},
+    {"main", (PyCFunction) pylibui_main, METH_VARARGS,
+    "Execute main loop."},
+
+    // Test
     {"test", (PyCFunction) pylibui_test, METH_VARARGS,
     "Tests pylibui."},
 
