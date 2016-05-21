@@ -1,11 +1,12 @@
 from distutils.core import setup, Extension
 
+
 module = Extension(
     'pylibui',
     include_dirs = ['libui'],
     libraries = ['ui'],
     library_dirs = ['libui/out'],
-    sources = ['src/pylibui.c']
+    sources = ['src/pylibui.c', 'src/tests.c']
 )
 
 setup(
