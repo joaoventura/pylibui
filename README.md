@@ -12,7 +12,9 @@ Python wrapper for [libui](https://github.com/andlabs/libui/).
     >>> pylibui.uninit()
 
 
-## Install instructions
+## Build instructions
+
+Currently it works in OSX Mavericks and it may work on Linux.
 
 Clone pylibui:
 
@@ -49,6 +51,5 @@ You have to explicitely define where the system will find libui's shared lib.
     $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../../libui/out/
     $ python3
     >>> import pylibui
-    >>> pylibui.test()
 
-You should see a window with a simple "Hello World" label.
+You can now use pylibui.
