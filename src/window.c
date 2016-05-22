@@ -4,37 +4,7 @@
  */
 
 #include "pylibui.h"
-
-
-typedef struct {
-    PyObject_HEAD
-    uiWindow *uiWindow;
-} py_uiWindow;
-
-
-static PyTypeObject py_uiWindowType = {
-    PyVarObject_HEAD_INIT(NULL, 0)
-    "pylibui.uiWindow",        /* tp_name */
-    sizeof(py_uiWindow),       /* tp_basicsize */
-    0,                         /* tp_itemsize */
-    0,                         /* tp_dealloc */
-    0,                         /* tp_print */
-    0,                         /* tp_getattr */
-    0,                         /* tp_setattr */
-    0,                         /* tp_as_async */
-    0,                         /* tp_repr */
-    0,                         /* tp_as_number */
-    0,                         /* tp_as_sequence */
-    0,                         /* tp_as_mapping */
-    0,                         /* tp_hash  */
-    0,                         /* tp_call */
-    0,                         /* tp_str */
-    0,                         /* tp_getattro */
-    0,                         /* tp_setattro */
-    0,                         /* tp_as_buffer */
-    Py_TPFLAGS_DEFAULT,        /* tp_flags */
-    "uiWindow objects",        /* tp_doc */
-};
+#include "objects.h"
 
 
 void register_uiWindowType(PyObject *m) {
@@ -47,16 +17,21 @@ void register_uiWindowType(PyObject *m) {
     PyModule_AddObject(m, "uiWindow", (PyObject *) &py_uiWindowType);
 }
 
-
 PyObject *
 py_uiNewWindow(PyObject *m, PyObject *args)
 {
-    PyObject *py_window;
+    py_uiWindow *window;
+    const char *title;
+    int width, height, hasMenubar;
 
-    py_window = PyObject_CallObject((PyObject *) &py_uiWindowType, NULL);
-    if (py_window != NULL) {
-        //py_window->uiWindow = uiNewWindow("Window", 640, 480, 1);
-    }
+    if (!PyArg_ParseTuple(args, "siii", &title, &width, &height, &hasMenubar))
+        return NULL;
 
-    return py_window;
+    window = PyObject_New(py_uiWindow, &py_uiWindowType);
+    if (window == NULL)
+        return NULL;
+
+    window->uiWindow = uiNewWindow(title, width, height, hasMenubar);
+
+    return (PyObject *) window;
 }

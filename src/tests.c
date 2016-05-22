@@ -4,6 +4,7 @@
  */
 
 #include "pylibui.h"
+#include "objects.h"
 
 
 static uiWindow *mainwin;
@@ -45,6 +46,22 @@ pylibui_test(PyObject *m)
     label = uiNewLabel("Hello, World!");
     uiBoxAppend(box, uiControl(label), 0);
 
+    uiControlShow(uiControl(mainwin));
+
+    Py_RETURN_NONE;
+}
+
+PyObject *
+pylibui_test_show_window(PyObject *m, PyObject *args)
+{
+    py_uiWindow *window;
+
+    if (!PyArg_ParseTuple(args, "O", &window))
+        return NULL;
+
+    mainwin = window->uiWindow;
+    uiWindowSetMargined(mainwin, 1);
+    uiWindowOnClosing(mainwin, onClosing, NULL);
     uiControlShow(uiControl(mainwin));
 
     Py_RETURN_NONE;

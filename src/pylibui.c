@@ -5,7 +5,6 @@
 
 #include <Python.h>
 #include <stdio.h>
-#include "ui.h"
 #include "pylibui.h"
 
 
@@ -55,6 +54,8 @@ static PyMethodDef PylibuiMethods[] = {
 
     // Test
     {"test", (PyCFunction) pylibui_test, METH_VARARGS,
+    "Tests pylibui."},
+    {"test_show_window", (PyCFunction) pylibui_test_show_window, METH_VARARGS,
     "Tests pylibui."},
 
     // uiWindow functions

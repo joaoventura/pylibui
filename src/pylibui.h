@@ -9,6 +9,7 @@
 
 // Test functions
 extern PyObject *pylibui_test(PyObject *m);
+extern PyObject *pylibui_test_show_window(PyObject *m, PyObject *args);
 
 // uiWindow functions
 extern void register_uiWindowType(PyObject *m);
