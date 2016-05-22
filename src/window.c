@@ -51,9 +51,11 @@ void register_uiWindowType(PyObject *m) {
 PyObject *
 py_uiNewWindow(PyObject *m, PyObject *args)
 {
+    PyObject *py_window;
+
     py_window = PyObject_CallObject((PyObject *) &py_uiWindowType, NULL);
     if (py_window != NULL) {
-        py_window->uiWindow = uiNewWindow("Window", 640, 480, 1);
+        //py_window->uiWindow = uiNewWindow("Window", 640, 480, 1);
     }
 
     return py_window;
