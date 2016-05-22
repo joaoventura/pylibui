@@ -35,3 +35,17 @@ py_uiNewWindow(PyObject *m, PyObject *args)
 
     return (PyObject *) window;
 }
+
+PyObject *
+py_uiWindowSetMargined(PyObject *m, PyObject *args)
+{
+    py_uiWindow *window;
+    int margined;
+
+    if (!PyArg_ParseTuple(args, "Oi", &window, &margined))
+        return NULL;
+
+    uiWindowSetMargined(window->uiWindow, margined);
+
+    Py_RETURN_NONE;
+}

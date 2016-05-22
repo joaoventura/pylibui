@@ -60,7 +60,6 @@ pylibui_test_show_window(PyObject *m, PyObject *args)
         return NULL;
 
     mainwin = window->uiWindow;
-    uiWindowSetMargined(mainwin, 1);
     uiWindowOnClosing(mainwin, onClosing, NULL);
     uiControlShow(uiControl(mainwin));
 

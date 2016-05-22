@@ -61,6 +61,8 @@ static PyMethodDef PylibuiMethods[] = {
     // uiWindow functions
     {"uiNewWindow", (PyCFunction) py_uiNewWindow, METH_VARARGS,
     "Returns a uiWindow."},
+    {"uiWindowSetMargined", (PyCFunction) py_uiWindowSetMargined, METH_VARARGS,
+    "Sets the margin of the window."},
 
     {NULL, NULL, 0, NULL}
 };
