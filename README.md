@@ -9,7 +9,8 @@ Python3 wrapper for [libui](https://github.com/andlabs/libui/).
     $ python3
     >>> import pylibui
     >>> pylibui.init()
-    >>> pylibui.test()
+    >>> window = pylibui.uiNewWindow('Title', 640, 480, 1)
+    >>> pylibui.test_show_window(window)
     >>> pylibui.main()
     >>> pylibui.uninit()
 
