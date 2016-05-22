@@ -7,4 +7,9 @@
 #include "ui.h"
 
 
-extern PyObject *pylibui_test(PyObject *self);
+// Test functions
+extern PyObject *pylibui_test(PyObject *m);
+
+// uiWindow functions
+extern void register_uiWindowType(PyObject *m);
+extern PyObject *py_uiNewWindow(PyObject *m, PyObject *args);

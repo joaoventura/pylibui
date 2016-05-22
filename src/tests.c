@@ -2,7 +2,7 @@
  *  Python wrapper for libui.
  *
  */
- 
+
 #include "pylibui.h"
 
 
@@ -22,7 +22,7 @@ static int shouldQuit(void *data)
 }
 
 PyObject *
-pylibui_test(PyObject *self)
+pylibui_test(PyObject *m)
 {
     uiMenu *menu;
     uiMenuItem *item;

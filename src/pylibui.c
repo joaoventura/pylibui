@@ -12,7 +12,7 @@
 /* Initialization and main loop functions */
 
 static PyObject *
-pylibui_init(PyObject *self)
+pylibui_init(PyObject *m)
 {
     uiInitOptions o;
     const char *err;
@@ -28,14 +28,14 @@ pylibui_init(PyObject *self)
 }
 
 static PyObject *
-pylibui_uninit(PyObject *self)
+pylibui_uninit(PyObject *m)
 {
     uiUninit();
     Py_RETURN_NONE;
 }
 
 static PyObject *
-pylibui_main(PyObject *self)
+pylibui_main(PyObject *m)
 {
     uiMain();
     Py_RETURN_NONE;
@@ -57,6 +57,10 @@ static PyMethodDef PylibuiMethods[] = {
     {"test", (PyCFunction) pylibui_test, METH_VARARGS,
     "Tests pylibui."},
 
+    // uiWindow functions
+    {"uiNewWindow", (PyCFunction) py_uiNewWindow, METH_VARARGS,
+    "Returns a uiWindow."},
+
     {NULL, NULL, 0, NULL}
 };
 
@@ -72,5 +76,11 @@ static struct PyModuleDef pylibuimodule = {
 PyMODINIT_FUNC
 PyInit_pylibui(void)
 {
-    return PyModule_Create(&pylibuimodule);
+    PyObject* m;
+
+    m = PyModule_Create(&pylibuimodule);
+
+    register_uiWindowType(m);
+
+    return m;
 }
