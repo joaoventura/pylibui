@@ -114,6 +114,7 @@ def generic_function(function):
         '    :return: value\n'
         '    """\n'
         '\n'
+        '    # TODO\n'
         '    return clibui.{fname}()\n\n\n'
     )
 
@@ -208,5 +209,5 @@ sections = {
 }
 
 
-contents = parse_section('window', 'ui.h')
+contents = parse_section('box', 'ui.h')
 print(contents)
