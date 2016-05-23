@@ -10,6 +10,8 @@ build/
 dist/
 MANIFEST
 
+# Libui shared libs
+sharedlibs/
 
 # OS X
 .DS_Store
