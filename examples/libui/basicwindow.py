@@ -16,14 +16,15 @@ libui.main.uiInit(options)
 window = libui.window.uiNewWindow('Window', 640, 480, 1)
 libui.window.uiWindowSetMargined(window, 1)
 
-# Set quit handler
+# Create quit handler
 def onClosing(window, data):
-    print('On closing')
+    print('On closing..')
     control = libui.control.uiControlPointer(window)
     libui.control.uiControlDestroy(control)
     libui.main.uiQuit()
     return 0
 
+# Keep reference to native C onClosing handler
 onclose = libui.window.uiWindowOnClosing(window, onClosing, None)
 
 # Show window
@@ -34,4 +35,4 @@ libui.control.uiControlShow(control)
 libui.main.uiMain()
 
 # Destroy
-#libui.main.uiUninit()
+libui.main.uiUninit()
