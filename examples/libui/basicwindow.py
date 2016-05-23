@@ -9,30 +9,30 @@ from pylibui import libui
 
 
 # Initialize libui
-options = libui.main.uiInitOptions()
-libui.main.uiInit(options)
+options = libui.uiInitOptions()
+libui.uiInit(options)
 
 # Window
-window = libui.window.uiNewWindow('Window', 640, 480, 1)
-libui.window.uiWindowSetMargined(window, 1)
+window = libui.uiNewWindow('Window', 640, 480, 1)
+libui.uiWindowSetMargined(window, 1)
 
 # Create quit handler
 def onClosing(window, data):
     print('On closing..')
-    control = libui.control.uiControlPointer(window)
-    libui.control.uiControlDestroy(control)
-    libui.main.uiQuit()
+    control = libui.uiControlPointer(window)
+    libui.uiControlDestroy(control)
+    libui.uiQuit()
     return 0
 
 # Keep reference to native C onClosing handler
-onclose = libui.window.uiWindowOnClosing(window, onClosing, None)
+onclose = libui.uiWindowOnClosing(window, onClosing, None)
 
 # Show window
-control = libui.control.uiControlPointer(window)
-libui.control.uiControlShow(control)
+control = libui.uiControlPointer(window)
+libui.uiControlShow(control)
 
 # Main loop
-libui.main.uiMain()
+libui.uiMain()
 
 # Destroy
-libui.main.uiUninit()
+libui.uiUninit()
