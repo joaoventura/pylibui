@@ -50,7 +50,7 @@ def uiWindowSetTitle(window, title):
     :return: None
     """
 
-    clibui.uiWindowSetTitle(window, bytes(title, 'utf-8'))
+    return clibui.uiWindowSetTitle(window, bytes(title, 'utf-8'))
 
 
 # - void uiWindowOnClosing(uiWindow *w, int (*f)(uiWindow *w, void *data), void *data);
@@ -83,7 +83,7 @@ def uiWindowSetChild(window, child):
     :return: None
     """
 
-    clibui.uiWindowSetChild(window, child)
+    return clibui.uiWindowSetChild(window, child)
 
 
 # - int uiWindowMargined(uiWindow *w);
