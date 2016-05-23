@@ -16,6 +16,8 @@ ctypes.cdll.LoadLibrary(SHARED_LIBS)
 clibui = ctypes.CDLL(SHARED_LIBS)
 
 
+from .box import *
 from .control import *
+from .label import *
 from .main import *
 from .window import *
