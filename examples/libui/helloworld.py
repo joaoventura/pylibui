@@ -44,4 +44,4 @@ libui.uiControlShow(control)
 libui.uiMain()
 
 # Destroy
-#libui.uiUninit()
+libui.uiUninit()
