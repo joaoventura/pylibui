@@ -105,7 +105,7 @@ def generic_function(function):
     fargs = fargs.replace(');', '')
 
     text = (
-        '# Signature: {signature}\n'
+        '# - {signature}\n'
         'def {fname}(*args):\n'
         '    """\n'
         '    Describe the function.\n'
@@ -209,5 +209,5 @@ sections = {
 }
 
 
-contents = parse_section('box', 'ui.h')
+contents = parse_section('window', 'ui.h')
 print(contents)
