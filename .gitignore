@@ -1,5 +1,15 @@
-# Build directory
-build/
+# Pycharm project files
+.idea
 
-# Ignore libui subdir
-libui/
+# Python cache files
+*.py[cdo]
+__pycache__/
+
+# Build dirs and files
+build/
+dist/
+MANIFEST
+
+
+# OS X
+.DS_Store

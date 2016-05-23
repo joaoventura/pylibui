@@ -1,59 +1,55 @@
 # pylibui
 
-Python3 wrapper for [libui](https://github.com/andlabs/libui/).
+Python3 wrapper for [libui](https://github.com/andlabs/libui/). It uses ctypes 
+to interface with the libui shared library.
 
 
 ## Usage
 
-    $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../../libui/out/
     $ python3
-    >>> import pylibui
-    >>> pylibui.init()
-    >>> window = pylibui.uiNewWindow('Title', 640, 480, 1)
-    >>> pylibui.uiWindowSetMargined(window, 1)
-    >>> pylibui.test_show_window(window)
-    >>> pylibui.main()
-    >>> pylibui.uninit()
+    
+    from pylibui import libui
+    
+    # Initialize libui
+    options = libui.main.uiInitOptions()
+    libui.main.uiInit(options)
+    
+    # Window
+    window = libui.window.uiNewWindow('Window', 640, 480, 1)
+    libui.window.uiWindowSetMargined(window, 1)
+    
+    # Set quit handler
+    def onClosing(window, data):
+        control = libui.control.uiControlPointer(window)
+        libui.control.uiControlDestroy(control)
+        libui.main.uiQuit()
+    
+    onclose = libui.window.uiWindowOnClosing(window, onClosing, None)
+    
+    # Show window
+    control = libui.control.uiControlPointer(window)
+    libui.control.uiControlShow(control)
+    
+    # Main loop
+    libui.main.uiMain()
 
 
 ## Build instructions
-
-Currently it works in OSX Mavericks and it may work on Linux.
 
 Clone pylibui:
 
     $ git clone https://github.com/joaoventura/pylibui
 
-Clone libui inside pylibui:
+Clone [libui](https://github.com/andlabs/libui/) and build the shared library: 
 
-    $ cd pylibui
     $ git clone https://github.com/andlabs/libui/
-
-Make the libui shared library:
-
     $ cd libui
     $ make
 
-The shared library will be in pylibui/libui/out. Now you can build pylibui:
+The libui shared library will be inside libui/out. Finally, copy the contents 
+of out/ to pylibui/libui/sharedlibs.
 
-    $ cd ..
-    $ python3 setup.py build
+Now, you can use pylibui:
 
-The pylibui shared library will be in pylibui/build/libxxx. Cd into that
-directory and try to import it:
-
-    $ cd build/libxxx
     $ python3
-    >>> import pylibui
-    Traceback (most recent call last):
-        File "<stdin>", line 1, in <module>
-    ImportError: dlopen(...)
-        Reason: image not found
-
-You have to explicitly define where the system will find libui's shared lib.
-
-    $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../../libui/out/
-    $ python3
-    >>> import pylibui
-
-You can now use pylibui.
+    >>> from pylibui import libui
