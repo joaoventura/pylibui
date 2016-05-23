@@ -97,14 +97,15 @@ def generic_function(function):
     :return: string
     """
 
-    function = function.split(' ', 1)[1]
+    signature = function
+    rtype, function = function.split(' ', 1)
     fname, fargs = function.split('(', 1)
 
     fname = fname.replace('*', '')
     fargs = fargs.replace(');', '')
 
     text = (
-        '# Signature: ({args})\n'
+        '# Signature: {signature}\n'
         'def {fname}(*args):\n'
         '    """\n'
         '    Describe the function.\n'
@@ -113,10 +114,10 @@ def generic_function(function):
         '    :return: value\n'
         '    """\n'
         '\n'
-        '    pass\n\n\n'
+        '    return clibui.{fname}()\n\n\n'
     )
 
-    return text.format(fname=fname, args=fargs)
+    return text.format(fname=fname, signature=signature, args=fargs)
 
 
 def parse_lines(lines):
@@ -207,5 +208,5 @@ sections = {
 }
 
 
-contents = parse_section('box', 'ui.h')
+contents = parse_section('window', 'ui.h')
 print(contents)
