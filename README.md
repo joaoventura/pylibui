@@ -6,32 +6,25 @@ to interface with the libui shared library.
 
 ## Usage
 
-    $ python3
+    :::python3    
+    from pylibui.core import App
+    from pylibui.controls import Window
     
-    from pylibui import libui
     
-    # Initialize libui
-    options = libui.main.uiInitOptions()
-    libui.main.uiInit(options)
+    def close(window, data):
+        window.destroy()
+        app.stop()
     
-    # Window
-    window = libui.window.uiNewWindow('Window', 640, 480, 1)
-    libui.window.uiWindowSetMargined(window, 1)
     
-    # Set quit handler
-    def onClosing(window, data):
-        control = libui.control.uiControlPointer(window)
-        libui.control.uiControlDestroy(control)
-        libui.main.uiQuit()
+    app = App()
     
-    onclose = libui.window.uiWindowOnClosing(window, onClosing, None)
+    window = Window('Window', 800, 600)
+    window.setMargined(1)
+    window.onClose(close)
+    window.show()
     
-    # Show window
-    control = libui.control.uiControlPointer(window)
-    libui.control.uiControlShow(control)
-    
-    # Main loop
-    libui.main.uiMain()
+    app.start()
+    app.close()
 
 
 ## Build instructions
@@ -46,10 +39,8 @@ Clone [libui](https://github.com/andlabs/libui/) and build the shared library:
     $ cd libui
     $ make
 
-The libui shared library will be inside libui/out. Finally, copy the contents 
-of out/ to pylibui/libui/sharedlibs.
-
-Now, you can use pylibui:
+The libui shared library will be inside libui/out. Copy the contents of out/ 
+to pylibui/libui/sharedlibs. Now, you can use pylibui:
 
     $ python3
-    >>> from pylibui import libui
+    >>> import pylibui
