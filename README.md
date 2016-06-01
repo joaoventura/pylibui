@@ -6,25 +6,26 @@ to interface with the libui shared library.
 
 ## Usage
 
-    :::python3    
-    from pylibui.core import App
-    from pylibui.controls import Window
-    
-    
-    def close(window, data):
-        window.destroy()
-        app.stop()
-    
-    
-    app = App()
-    
-    window = Window('Window', 800, 600)
-    window.setMargined(1)
-    window.onClose(close)
-    window.show()
-    
-    app.start()
-    app.close()
+```python    
+from pylibui.core import App
+from pylibui.controls import Window
+
+
+def close(window, data):
+    window.destroy()
+    app.stop()
+
+
+app = App()
+
+window = Window('Window', 800, 600)
+window.setMargined(1)
+window.onClose(close)
+window.show()
+
+app.start()
+app.close()
+```
 
 
 ## Build instructions
