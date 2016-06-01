@@ -1,10 +1,10 @@
 """
- Shows a window with a label as child.
+ Shows a window with a vertical box and some labels.
 
 """
 
 from pylibui.core import App
-from pylibui.controls import Window, Label
+from pylibui.controls import Window, Label, VerticalBox
 
 
 class MyWindow(Window):
@@ -19,8 +19,12 @@ app = App()
 window = MyWindow('Window', 800, 600)
 window.setMargined(1)
 
-label = Label('Hello World!')
-window.setChild(label)
+vbox = VerticalBox()
+vbox.setPadded(1)
+window.setChild(vbox)
+
+vbox.append(Label('Hello World!'))
+vbox.append(Label('Goodbye World!'))
 
 window.show()
 
