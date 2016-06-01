@@ -8,12 +8,12 @@ from pylibui import libui
 
 class Control:
 
-    def __init__(self):
+    def __init__(self, control=None):
         """
-        Creates an empty Control.
+        Creates a new Control.
 
         """
-        self.control = None
+        self.control = control
 
     def pointer(self):
         """

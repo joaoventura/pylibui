@@ -15,7 +15,6 @@ class Box(Control):
 
         """
         super().__init__()
-        self.control = None
 
     def setPadded(self, padded):
         """
@@ -30,7 +29,7 @@ class Box(Control):
         """
         Appends a child to the box.
 
-        :param child: child control
+        :param child: control
         :param stretchy: int
         :return: None
         """

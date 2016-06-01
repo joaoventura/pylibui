@@ -31,7 +31,7 @@ class Window(Control):
         """
         Sets a control as child of the window.
 
-        :param child: child control
+        :param child: control
         :return: None
         """
 
@@ -41,7 +41,7 @@ class Window(Control):
         """
         Sets the margins of the window
 
-        :param margined: the margins
+        :param margined: int
         :return: None
         """
         libui.uiWindowSetMargined(self.control, margined)
