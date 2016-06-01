@@ -3,7 +3,7 @@
 
 """
 
-from . import libui
+from pylibui import libui
 
 
 class Window:
@@ -18,6 +18,7 @@ class Window:
         :param menuBar: if has menu bar
         """
         self.window = libui.uiNewWindow(title, width, height, int(menuBar))
+        self.closeHandler = None
 
     def setMargined(self, margined):
         """
@@ -36,3 +37,26 @@ class Window:
         """
         control = libui.uiControlPointer(self.window)
         libui.uiControlShow(control)
+
+    def destroy(self):
+        """
+        Destroys the window.
+
+        :return: None
+        """
+        control = libui.uiControlPointer(self.window)
+        libui.uiControlDestroy(control)
+
+    def onClose(self, callback):
+        """
+        Executes the callback function on window closing.
+
+        :param callback: function (window, data)
+        :return: None
+        """
+
+        def handler(window, data):
+            callback(self, data)
+            return 0
+
+        self.closeHandler = libui.uiWindowOnClosing(self.window, handler, None)
