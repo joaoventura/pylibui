@@ -11,16 +11,17 @@ from pylibui.core import App
 from pylibui.controls import Window
 
 
-def close(window, data):
-    window.destroy()
-    app.stop()
+class MyWindow(Window):
+
+    def onClose(self, data):
+        super().onClose(data)
+        app.stop()
 
 
 app = App()
 
-window = Window('Window', 800, 600)
+window = MyWindow('Window', 800, 600)
 window.setMargined(1)
-window.onClose(close)
 window.show()
 
 app.start()

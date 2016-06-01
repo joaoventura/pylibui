@@ -18,7 +18,12 @@ class Window:
         :param menuBar: if has menu bar
         """
         self.window = libui.uiNewWindow(title, width, height, int(menuBar))
-        self.closeHandler = None
+
+        def handler(window, data):
+            self.onClose(data)
+            return 0
+
+        self.closeHandler = libui.uiWindowOnClosing(self.window, handler, None)
 
     def setMargined(self, margined):
         """
@@ -47,16 +52,12 @@ class Window:
         control = libui.uiControlPointer(self.window)
         libui.uiControlDestroy(control)
 
-    def onClose(self, callback):
+    def onClose(self, data):
         """
-        Executes the callback function on window closing.
+        Executes when window is closing.
 
-        :param callback: function (window, data)
+        :param data: data
         :return: None
         """
 
-        def handler(window, data):
-            callback(self, data)
-            return 0
-
-        self.closeHandler = libui.uiWindowOnClosing(self.window, handler, None)
+        self.destroy()
