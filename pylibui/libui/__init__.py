@@ -31,3 +31,4 @@ from .control import *
 from .label import *
 from .main import *
 from .window import *
+from .slider import *
