@@ -39,9 +39,12 @@ Clone [libui](https://github.com/andlabs/libui/) and build the shared library:
 
     $ git clone https://github.com/andlabs/libui/
     $ cd libui
+    $ mkdir build
+    $ cd build
+    $ cmake ..
     $ make
 
-The libui shared library will be inside libui/out. Copy the contents of out/ 
+The libui shared library will be inside libui/build/out. Copy the contents of out/ 
 to pylibui/libui/sharedlibs. Now, you can use pylibui:
 
     $ python3
@@ -71,4 +74,4 @@ you want to generate the bindings, copy-paste the contents to an empty file, and
 implement the ctypes calls. Most of them are easy, but you can check what's already
 done for some guidance.
 
-I'm accepting pull requests if the code is cleaned and it comes with an example.
+I'm accepting pull requests if the code is clean and it comes with a working example.
