@@ -14,11 +14,12 @@ class MyWindow(Window):
         app.stop()
 
 
-app = App()
+def main():
+    with App():
+        window = MyWindow('Window', 800, 600)
+        window.setMargined(1)
+        window.show()
 
-window = MyWindow('Window', 800, 600)
-window.setMargined(1)
-window.show()
 
-app.start()
-app.close()
+if __name__ == "__main__":
+    main()
