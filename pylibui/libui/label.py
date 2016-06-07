@@ -25,29 +25,30 @@ def uiLabelPointer(obj):
 
 
 # - char *uiLabelText(uiLabel *l);
-def uiLabelText(*args):
+def uiLabelText(label):
     """
-    Describe the function.
+    Returns the text of the label.
 
-    :param args: arguments
-    :return: value
+    :param label: uiLabel
+    :return: string
     """
 
-    # TODO
-    return clibui.uiLabelText()
+    clibui.uiLabelText.restype = ctypes.c_char_p
+    text = clibui.uiLabelText(label)
+
+    return text.decode()
 
 
 # - void uiLabelSetText(uiLabel *l, const char *text);
-def uiLabelSetText(*args):
+def uiLabelSetText(label, text):
     """
-    Describe the function.
+    Sets the text of the label.
 
-    :param args: arguments
-    :return: value
+    :param label: uiLabel
+    :param text: string
     """
 
-    # TODO
-    return clibui.uiLabelSetText()
+    clibui.uiLabelSetText(label, bytes(text, 'utf-8'))
 
 
 # - uiLabel *uiNewLabel(const char *text);
