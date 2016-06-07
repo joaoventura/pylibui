@@ -55,7 +55,7 @@ def uiButtonOnClicked(button, callback, data):
     """
     Executes the callback function on button click.
 
-    :param window: uiButton
+    :param button: uiButton
     :param callback: function
     :param data: data
     :return: reference to C callback function

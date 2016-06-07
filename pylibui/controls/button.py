@@ -40,3 +40,6 @@ class Button(Control):
         """
 
         return libui.uiButtonText(self.control)
+
+    def onClick(self, data):
+        pass
