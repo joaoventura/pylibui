@@ -17,7 +17,7 @@ class App:
         libui.uiInit(options)
 
     def __enter__(self):
-     self.start()
+        self.start()
      
     def start(self):
         """
@@ -30,7 +30,6 @@ class App:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.stop()
         self.close()
-        
 
     def stop(self):
         """
