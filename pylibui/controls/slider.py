@@ -39,7 +39,6 @@ class Slider(Control):
 
         :return: int
         """
-
         return libui.uiSliderValue(self.control)
 
     def onChanged(self, data):

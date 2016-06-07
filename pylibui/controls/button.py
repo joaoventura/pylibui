@@ -38,7 +38,6 @@ class Button(Control):
 
         :return: string
         """
-
         return libui.uiButtonText(self.control)
 
     def onClick(self, data):

@@ -31,5 +31,4 @@ class ProgressBar(Control):
 
         :return: int
         """
-
         return libui.uiProgressBarValue(self.control)

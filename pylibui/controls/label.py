@@ -32,5 +32,4 @@ class Label(Control):
 
         :return: string
         """
-
         return libui.uiLabelText(self.control)
