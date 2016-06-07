@@ -23,8 +23,8 @@ def return_lines(filename, start, end):
 
     with open(filename, 'r') as fin:
 
-        for lineno, line in enumerate(fin):
-            if start <= lineno + 1 <= end:
+        for lineno, line in enumerate(fin, 1):
+            if start <= lineno <= end:
                 lines.append(line.strip())
 
     return lines
