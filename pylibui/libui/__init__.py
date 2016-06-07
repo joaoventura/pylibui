@@ -30,5 +30,6 @@ from .button import *
 from .control import *
 from .label import *
 from .main import *
-from .window import *
+from .progressbar import *
 from .slider import *
+from .window import *

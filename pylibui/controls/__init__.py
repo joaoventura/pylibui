@@ -7,5 +7,6 @@ from .box import Box, HorizontalBox, VerticalBox
 from .button import Button
 from .control import Control
 from .label import Label
-from .window import Window
+from .progressbar import ProgressBar
 from .slider import Slider
+from .window import Window
