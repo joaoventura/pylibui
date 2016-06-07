@@ -34,7 +34,6 @@ class Window(Control):
         :param child: control
         :return: None
         """
-
         libui.uiWindowSetChild(self.control, child.pointer())
 
     def setMargined(self, margined):
@@ -53,5 +52,4 @@ class Window(Control):
         :param data: data
         :return: None
         """
-
         self.destroy()

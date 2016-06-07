@@ -26,7 +26,11 @@ clibui = ctypes.CDLL(SHARED_LIBS)
 
 
 from .box import *
+from .button import *
 from .control import *
+from .checkbox import *
 from .label import *
 from .main import *
+from .progressbar import *
+from .slider import *
 from .window import *
