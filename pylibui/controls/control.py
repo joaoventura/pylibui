@@ -38,4 +38,3 @@ class Control:
         :return: None
         """
         libui.uiControlDestroy(self.pointer())
-

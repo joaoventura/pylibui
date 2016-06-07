@@ -13,10 +13,12 @@ class MyWindow(Window):
         super().onClose(data)
         app.stop()
 
+
 class MySlider(Slider):
     
     def onChanged(self, data):
         print(self.getValue())
+
 
 app = App()
 

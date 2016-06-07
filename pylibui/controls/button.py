@@ -29,6 +29,7 @@ class Button(Control):
         Sets the text of the button.
 
         :param text: the text of the button
+        :return: None
         """
         libui.uiButtonSetText(self.control, text)
 
@@ -41,4 +42,10 @@ class Button(Control):
         return libui.uiButtonText(self.control)
 
     def onClick(self, data):
+        """
+        Executes when the button is clicked.
+
+        :param data: data
+        :return: None
+        """
         pass

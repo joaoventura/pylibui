@@ -23,6 +23,7 @@ class Label(Control):
         Sets the text of the label.
 
         :param text: the text of the label
+        :return: None
         """
         libui.uiLabelSetText(self.control, text)
 

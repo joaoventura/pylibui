@@ -13,15 +13,13 @@ class MyWindow(Window):
         super().onClose(data)
         app.stop()
 
-class MyProgressBar(ProgressBar):
-    pass
 
 app = App()
 
 window = MyWindow('Progress bar example')
 window.setMargined(1)
 
-progressbar = MyProgressBar()
+progressbar = ProgressBar()
 progressbar.setValue(60)
 window.setChild(progressbar)
 

@@ -13,10 +13,12 @@ class MyWindow(Window):
         super().onClose(data)
         app.stop()
 
+
 class MyCheckbox(Checkbox):
     
     def onToggled(self, data):
         print('checkbox toggled!')
+
 
 app = App()
 

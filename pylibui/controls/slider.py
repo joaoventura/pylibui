@@ -30,6 +30,7 @@ class Slider(Control):
         Sets the value of the slider.
 
         :param value: the value of the slider (int)
+        :return: None
         """
         libui.uiSliderSetValue(self.control, value)
 
@@ -42,4 +43,10 @@ class Slider(Control):
         return libui.uiSliderValue(self.control)
 
     def onChanged(self, data):
+        """
+        Executes when slider's value change.
+
+        :param data: data
+        :return: None
+        """
         pass

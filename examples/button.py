@@ -13,6 +13,7 @@ class MyWindow(Window):
         super().onClose(data)
         app.stop()
 
+
 class MyButton(Button):
 
     def onClick(self, data):
@@ -20,6 +21,7 @@ class MyButton(Button):
             self.setText('click me again')
         else:
             self.setText('click me')
+
 
 app = App()
 

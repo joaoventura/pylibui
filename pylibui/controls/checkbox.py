@@ -28,6 +28,7 @@ class Checkbox(Control):
         Sets the text of the checkbox.
 
         :param text: the text of the checkbox
+        :return: None
         """
         libui.uiCheckboxSetText(self.control, text)
 
@@ -44,6 +45,7 @@ class Checkbox(Control):
         Sets whether the checkbox is checked or not.
 
         :param checked: bool
+        :return: None
         """
         libui.uiCheckboxSetChecked(self.control, checked)
 
