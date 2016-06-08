@@ -8,26 +8,27 @@
 
 """
 
-
 def return_lines(filename, start, end):
     """
     Returns only the lines of a file between start and end.
 
     :param filename: the filename
-    :param start: first line
-    :param end: last line
-    :return: list of lines
+    :param start: text of first line to match
+    :param end: text of last line match
+    :return: generator of lines between and including the matching lines
     """
 
-    lines = []
+    accumulate = False
 
-    with open(filename, 'r') as fin:
+    with open(filename, 'rt', encoding='utf-8') as fin:
 
-        for lineno, line in enumerate(fin):
-            if start <= lineno + 1 <= end:
-                lines.append(line.strip())
-
-    return lines
+        for line in fin:
+            if not accumulate and start in line:
+                accumulate = True
+            if accumulate:
+                yield line.strip()
+            if accumulate and end in line:
+                break
 
 
 def generic_head():
@@ -37,15 +38,16 @@ def generic_head():
     :return: string
     """
 
-    return (
-        '"""\n'
-        ' Python wrapper for libui.\n'
-        '\n'
-        '"""\n'
-        '\n'
-        'import ctypes\n'
-        'from . import clibui\n\n\n'
-    )
+    return '''"""
+ Python wrapper for libui.
+
+"""
+
+import ctypes
+from . import clibui
+
+
+'''
 
 
 def generic_struct(name):
@@ -56,14 +58,15 @@ def generic_struct(name):
     :return: string
     """
 
-    text = (
-        'class {name}(ctypes.Structure):\n'
-        '    """Wrapper for the {name} C struct."""\n'
-        '\n'
-        '    pass\n\n\n'
-    )
+    return '''\
+class {name}(ctypes.Structure):
+    """Wrapper for the {name} C struct."""
 
-    return text.format(name=name)
+    pass
+
+
+'''.format(name=name)
+
 
 
 def generic_cast(name):
@@ -74,19 +77,20 @@ def generic_cast(name):
     :return: string
     """
 
-    text = (
-        'def {name}Pointer(obj):\n'
-        '    """\n'
-        '    Casts an object to {name} pointer type.\n'
-        '\n'
-        '    :param obj: a generic object\n'
-        '    :return: {name}\n'
-        '    """\n'
-        '\n'
-        '    return ctypes.cast(obj, ctypes.POINTER({name}))\n\n\n'
-    )
+    return '''\
+def {name}Pointer(obj):
+    """
+    Casts an object to {name} pointer type.
 
-    return text.format(name=name)
+    :param obj: a generic object
+    :return: {name}
+    """
+
+    return ctypes.cast(obj, ctypes.POINTER({name}))
+
+
+'''.format(name=name)
+
 
 
 def generic_function(function):
@@ -98,27 +102,27 @@ def generic_function(function):
     """
 
     signature = function
-    rtype, function = function.split(' ', 1)
+    rtype, function = function.split(None, 1)
     fname, fargs = function.split('(', 1)
 
     fname = fname.replace('*', '')
     fargs = fargs.replace(');', '')
 
-    text = (
-        '# - {signature}\n'
-        'def {fname}(*args):\n'
-        '    """\n'
-        '    Describe the function.\n'
-        '\n'
-        '    :param args: arguments\n'
-        '    :return: value\n'
-        '    """\n'
-        '\n'
-        '    # TODO\n'
-        '    return clibui.{fname}()\n\n\n'
-    )
+    return '''\
+# - {signature}
+def {fname}(*args):
+    """
+    Describe the function.
 
-    return text.format(fname=fname, signature=signature, args=fargs)
+    :param args: arguments
+    :return: value
+    """
+
+    # TODO
+    return clibui.{fname}()
+
+
+'''.format(fname=fname, signature=signature, args=fargs)
 
 
 def parse_lines(lines):
@@ -129,27 +133,27 @@ def parse_lines(lines):
     :return: string
     """
 
-    contents = generic_head()
+    contents = [generic_head()]
 
     for line in lines:
 
         # Definition of structs
         if line.startswith('typedef struct'):
             name = line.split()[2].strip()
-            contents += generic_struct(name)
+            contents.append(generic_struct(name))
 
         # Definition of pointer casts
         elif line.startswith('#define') and '(this)' in line:
             fname = line.split()[1].strip()
             name = fname.split('(this)')[0]
-            contents += generic_cast(name)
+            contents.append(generic_cast(name))
 
         # Functions
         elif line.startswith('_UI_EXTERN'):
             function = line.split(' ', 1)[1].strip()
-            contents += generic_function(function)
+            contents.append(generic_function(function))
 
-    return contents
+    return ''.join(contents)
 
 
 def parse_content(filename, start, end):
@@ -158,8 +162,8 @@ def parse_content(filename, start, end):
     start and end lines.
 
     :param filename: libui header file
-    :param start: start line
-    :param end: end line
+    :param start: text of first line to match
+    :param end: text of last line match
     :return: string
     """
 
@@ -177,7 +181,6 @@ def parse_section(name, filename):
     :return: string
     """
 
-    global sections
     section = sections[name]
 
     return parse_content(filename, section[0], section[1])
@@ -185,28 +188,38 @@ def parse_section(name, filename):
 
 # You should regularly check the sections for the target 'ui.h' file.
 
+# A section is from and including the first line that matches the first
+# text up to and including the first line that matches the second text.
+# Two or more words are used to make it more robust.
 sections = {
-    'main': [28, 46],
-    'control': [48, 87],
-    'window': [89, 97],
-    'button': [99, 104],
-    'box': [106, 113],
-    'entry': [115, 122],
-    'checkbox': [124, 131],
-    'label': [133, 137],
-    'tab': [139, 147],
-    'group': [149, 156],
-    'spinbox': [163, 168],
-    'progressbar': [170, 175],
-    'slider': [177, 181],
-    'separator': [183, 185],
-    'combobox': [187, 193],
-    'editablecombobox': [195, 202],
-    'radiobuttons': [204, 207],
-    'datetimepicker': [209, 213],
-    'multilineentry': [215, 225],
-    'menuitem': [227, 233],
-    'menu': [235, 248],
+    'main': ("uiInitOptions uiInitOptions;", "void uiFreeText(char"),
+    'control': ("uiControl uiControl;",
+                "void uiUserBugCannotSetParentOnToplevel(const"),
+    'window': ("uiWindow uiWindow;", "uiWindow *uiNewWindow"),
+    'button': ("uiButton uiButton;", "uiButton *uiNewButton"),
+    'box': ("uiBox uiBox;", "uiBox *uiNewVerticalBox"),
+    'entry': ("uiEntry uiEntry;", "uiEntry *uiNewEntry"),
+    'checkbox': ("uiCheckbox uiCheckbox/", "uiCheckbox *uiNewCheckbox"),
+    'label': ("uiLabel uiLabel;", "uiLabel *uiNewLabel"),
+    'tab': ("uiTab uiTab;", "uiTab *uiNewTab"),
+    'group': ("uiGroup uiGroup;", "uiGroup *uiNewGroup"),
+    'spinbox': ("uiSpinbox uiSpinbox;", "uiSpinbox *uiNewSpinBox"),
+    'progressbar': ("uiProgressBar uiProgressBar;",
+                    "uiProgressBar *uiNewProgressBar"),
+    'slider': ("uiSlider uiSlider;", "uiSlider *uiNewSlider"),
+    'separator': ("uiSeparator uiSeparator;",
+                  "uiSeparator *uiNewHorizontalSeparator"),
+    'combobox': ("uiCombobox uiCombobox;", "uiCombobox *uiNewCombobox"),
+    'editablecombobox': ("uiEditableCombobox uiEditableCombobox;",
+                         "uiEditableCombobox *uiNewEditableCombobox"),
+    'radiobuttons': ("uiRadioButtons uiRadioButtons;",
+                     "uiRadioButtons *uiNewRadioButtons"),
+    'datetimepicker': ("uiDateTimePicker uiDateTimePicker;",
+                       "uiDateTimePicker *uiNewTimePicker"),
+    'multilineentry': ("uiMultilineEntry uiMultilineEntry;",
+                       "uiMultilineEntry *uiNewNonWrappingMultilineEntry"),
+    'menuitem': ("uiMenuItem uiMenuItem;", "void uiMenuItemSetChecked"),
+    'menu': ("uiMenu uiMenu;", "void uiMsgBoxError"),
 }
 
 
