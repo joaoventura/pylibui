@@ -15,7 +15,7 @@ class MyWindow(Window):
 
 
 class MySlider(Slider):
-    
+
     def onChanged(self, data):
         print(self.getValue())
 

@@ -15,7 +15,7 @@ class MyWindow(Window):
 
 
 class MyCheckbox(Checkbox):
-    
+
     def onToggled(self, data):
         print('checkbox toggled!')
 
