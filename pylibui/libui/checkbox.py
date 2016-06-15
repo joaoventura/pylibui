@@ -46,6 +46,7 @@ def uiCheckboxSetText(checkbox, text):
 
     :param checkbox: uiCheckbox
     :param text: string
+    :return: None
     """
 
     clibui.uiCheckboxSetText(checkbox, bytes(text, 'utf-8'))
@@ -89,6 +90,7 @@ def uiCheckboxSetChecked(checkbox, checked):
 
     :param checkbox: uiCheckbox
     :param checked: bool
+    :return: None
     """
 
     clibui.uiCheckboxSetChecked(checkbox, checked)

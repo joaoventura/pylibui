@@ -22,7 +22,8 @@ class Button(Control):
             self.onClick(data)
             return 0
 
-        self.clickHandler = libui.uiButtonOnClicked(self.control, handler, None)
+        self.clickHandler = libui.uiButtonOnClicked(self.control, handler,
+                                                    None)
 
     def setText(self, text):
         """

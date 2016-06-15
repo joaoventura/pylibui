@@ -46,6 +46,7 @@ def uiLabelSetText(label, text):
 
     :param label: uiLabel
     :param text: string
+    :return: None
     """
 
     clibui.uiLabelSetText(label, bytes(text, 'utf-8'))

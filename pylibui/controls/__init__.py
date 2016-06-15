@@ -10,4 +10,5 @@ from .checkbox import Checkbox
 from .label import Label
 from .progressbar import ProgressBar
 from .slider import Slider
+from .spinbox import Spinbox
 from .window import Window

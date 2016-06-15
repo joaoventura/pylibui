@@ -50,7 +50,7 @@ def uiWindowSetTitle(window, title):
     :return: None
     """
 
-    return clibui.uiWindowSetTitle(window, bytes(title, 'utf-8'))
+    clibui.uiWindowSetTitle(window, bytes(title, 'utf-8'))
 
 
 # - void uiWindowOnClosing(uiWindow *w, int (*f)(uiWindow *w, void *data), void *data);
@@ -83,7 +83,7 @@ def uiWindowSetChild(window, child):
     :return: None
     """
 
-    return clibui.uiWindowSetChild(window, child)
+    clibui.uiWindowSetChild(window, child)
 
 
 # - int uiWindowMargined(uiWindow *w);
@@ -111,7 +111,7 @@ def uiWindowSetMargined(window, margined):
     :return: None
     """
 
-    return clibui.uiWindowSetMargined(window, margined)
+    clibui.uiWindowSetMargined(window, margined)
 
 
 # - uiWindow *uiNewWindow(const char *title, int width, int height, int hasMenubar);
