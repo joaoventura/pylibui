@@ -34,4 +34,5 @@ from .main import *
 from .progressbar import *
 from .slider import *
 from .spinbox import *
+from .tab import *
 from .window import *
