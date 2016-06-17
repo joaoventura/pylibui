@@ -59,7 +59,7 @@ class Tab(Control):
 
     def getMargined(self, page):
         """
-        Returs the margins of the tab.
+        Returns the margins of the tab.
 
         :param page: int
         :return: int
