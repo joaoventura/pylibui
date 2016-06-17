@@ -21,7 +21,7 @@ class ProgressBar(Control):
         """
         Sets the value of the progress bar.
 
-        :param value: the value of the progress bar (int between 0 and 100)
+        :param value: int (between 0 and 100)
         :return: None
         """
         libui.uiProgressBarSetValue(self.control, value)

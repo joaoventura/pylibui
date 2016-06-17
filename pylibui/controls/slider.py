@@ -13,8 +13,8 @@ class Slider(Control):
         """
         Creates a new slider.
 
-        :param min_value: the minimum value (int)
-        :param max_value: the maximum value (int)
+        :param min_value: int
+        :param max_value: int
         """
         super().__init__()
         self.control = libui.uiNewSlider(min_value, max_value)
@@ -30,7 +30,7 @@ class Slider(Control):
         """
         Sets the value of the slider.
 
-        :param value: the value of the slider (int)
+        :param value: int
         :return: None
         """
         libui.uiSliderSetValue(self.control, value)

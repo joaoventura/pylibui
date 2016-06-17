@@ -13,8 +13,8 @@ class Spinbox(Control):
         """
         Creates a new spinbox.
 
-        :param min_value: the minimum value (int)
-        :param max_value: the maximum value (int)
+        :param min_value: int
+        :param max_value: int
         """
         super().__init__()
         self.control = libui.uiNewSpinbox(min_value, max_value)
@@ -30,7 +30,7 @@ class Spinbox(Control):
         """
         Sets the value of the spinbox.
 
-        :param value: the value of the spinbox (int)
+        :param value: int
         :return: None
         """
         libui.uiSpinboxSetValue(self.control, value)

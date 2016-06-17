@@ -21,7 +21,8 @@ class Checkbox(Control):
             self.onToggled(data)
             return 0
 
-        self.toggledHandler = libui.uiCheckboxOnToggled(self.control, handler, None)
+        self.toggledHandler = libui.uiCheckboxOnToggled(self.control, handler,
+                                                        None)
 
     def setText(self, text):
         """
