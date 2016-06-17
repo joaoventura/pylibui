@@ -48,6 +48,7 @@ def uiProgressBarSetValue(progressbar, value):
 
     clibui.uiProgressBarSetValue(progressbar, value)
 
+
 # - uiProgressBar *uiNewProgressBar(void);
 def uiNewProgressBar():
     """
