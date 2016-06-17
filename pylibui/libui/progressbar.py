@@ -33,8 +33,7 @@ def uiProgressBarValue(progressbar):
     :return: int
     """
 
-    raise NotImplementedError  # TODO: currently not implemented in libui
-    # return clibui.uiProgressBarValue(progressbar)
+    return clibui.uiProgressBarValue(progressbar)
 
 
 # - void uiProgressBarSetValue(uiProgressBar *p, int n);
