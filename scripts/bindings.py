@@ -167,6 +167,24 @@ def parse_content(filename, start, end):
     return parse_lines(lines)
 
 
+def find_line(string, filename):
+    """
+    Returns the first line that includes the string.
+
+    :param string: the string
+    :param filename: libui header file
+    :return: int
+    """
+
+    lines = return_lines(filename, 0, 10000)
+
+    for index, line in enumerate(lines):
+        if string in line:
+            return index
+
+    return -1
+
+
 def parse_section(name, filename):
     """
     Parses a section of the libui header as defined in the
@@ -180,33 +198,99 @@ def parse_section(name, filename):
     global sections
     section = sections[name]
 
-    return parse_content(filename, section[0], section[1])
+    line_start = find_line(section[0], filename)
+    line_end = find_line(section[1], filename)
+
+    return parse_content(filename, line_start, line_end)
 
 
 # You should regularly check the sections for the target 'ui.h' file.
 
 sections = {
-    'main': [28, 46],
-    'control': [48, 87],
-    'window': [89, 97],
-    'button': [99, 104],
-    'box': [106, 113],
-    'entry': [115, 122],
-    'checkbox': [124, 131],
-    'label': [133, 137],
-    'tab': [139, 147],
-    'group': [149, 156],
-    'spinbox': [163, 168],
-    'progressbar': [170, 175],
-    'slider': [177, 181],
-    'separator': [183, 185],
-    'combobox': [187, 193],
-    'editablecombobox': [195, 202],
-    'radiobuttons': [204, 207],
-    'datetimepicker': [209, 213],
-    'multilineentry': [215, 225],
-    'menuitem': [227, 233],
-    'menu': [235, 248],
+    'main': (
+        'typedef struct uiInitOptions',
+        '_UI_EXTERN void uiFreeText'
+    ),
+    'control': (
+        'typedef struct uiControl',
+        '_UI_EXTERN void uiUserBugCannotSetParentOnToplevel'
+    ),
+    'window': (
+        'typedef struct uiWindow',
+        '_UI_EXTERN uiWindow *uiNewWindow'
+    ),
+    'button': (
+        'typedef struct uiButton',
+        '_UI_EXTERN uiButton *uiNewButton'
+    ),
+    'box': (
+        'typedef struct uiBox',
+        '_UI_EXTERN uiBox *uiNewVerticalBox'
+    ),
+    'checkbox': (
+        'typedef struct uiCheckbox',
+        '_UI_EXTERN uiCheckbox *uiNewCheckbox'
+    ),
+    'entry': (
+        'typedef struct uiEntry',
+        '_UI_EXTERN uiEntry *uiNewSearchEntry'
+    ),
+    'label': (
+        'typedef struct uiLabel',
+        '_UI_EXTERN uiLabel *uiNewLabel'
+    ),
+    'tab': (
+        'typedef struct uiTab',
+        '_UI_EXTERN uiTab *uiNewTab'
+    ),
+    'group': (
+        'typedef struct uiGroup',
+        '_UI_EXTERN uiGroup *uiNewGroup'
+    ),
+    'spinbox': (
+        'typedef struct uiSpinbox',
+        '_UI_EXTERN uiSpinbox *uiNewSpinbox'
+    ),
+    'slider': (
+        'typedef struct uiSlider',
+        '_UI_EXTERN uiSlider *uiNewSlider'
+    ),
+    'progressbar': (
+        'typedef struct uiProgressBar',
+        '_UI_EXTERN uiProgressBar *uiNewProgressBar'
+    ),
+    'separator': (
+        'typedef struct uiSeparator',
+        '_UI_EXTERN uiSeparator *uiNewVerticalSeparator'
+    ),
+    'combobox': (
+        'typedef struct uiCombobox',
+        '_UI_EXTERN uiCombobox *uiNewCombobox'
+    ),
+    'editablecombobox': (
+        'typedef struct uiEditableCombobox',
+        '_UI_EXTERN uiEditableCombobox *uiNewEditableCombobox'
+    ),
+    'radiobuttons': (
+        'typedef struct uiRadioButtons',
+        '_UI_EXTERN uiRadioButtons *uiNewRadioButtons'
+    ),
+    'datetimepicker': (
+        'typedef struct uiDateTimePicker',
+        '_UI_EXTERN uiDateTimePicker *uiNewTimePicker'
+    ),
+    'multilineentry': (
+        'typedef struct uiMultilineEntry',
+        '_UI_EXTERN uiMultilineEntry *uiNewNonWrappingMultilineEntry'
+    ),
+    'menuitem': (
+        'typedef struct uiMenuItem',
+        '_UI_EXTERN void uiMenuItemSetChecked'
+    ),
+    'menu': (
+        'typedef struct uiMenu',
+        '_UI_EXTERN uiMenu *uiNewMenu'
+    ),
 }
 
 
