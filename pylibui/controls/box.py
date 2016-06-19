@@ -18,7 +18,7 @@ class Box(Control):
 
     def setPadded(self, padded):
         """
-        Sets the padded of the box.
+        Sets the padding of the box.
 
         :param padded: int
         :return: None

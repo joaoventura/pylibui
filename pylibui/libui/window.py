@@ -27,7 +27,7 @@ def uiWindowPointer(obj):
 # - char *uiWindowTitle(uiWindow *w);
 def uiWindowTitle(window):
     """
-    Returns the window title.
+    Returns the window's title.
 
     :param window: uiWindow
     :return: string
@@ -43,14 +43,152 @@ def uiWindowTitle(window):
 # - void uiWindowSetTitle(uiWindow *w, const char *title);
 def uiWindowSetTitle(window, title):
     """
-    Sets the window title.
+    Sets the window's title.
 
     :param window: uiWindow
     :param title: string
     :return: None
     """
 
-    return clibui.uiWindowSetTitle(window, bytes(title, 'utf-8'))
+    clibui.uiWindowSetTitle(window, bytes(title, 'utf-8'))
+
+
+# - void uiWindowPosition(uiWindow *w, int *x, int *y);
+def uiWindowPosition(window):
+    """
+    Returns the window position.
+
+    :param window: uiWindow
+    :return: tuple
+    """
+
+    x = ctypes.c_int()
+    y = ctypes.c_int()
+    clibui.uiWindowPosition(window, ctypes.byref(x), ctypes.byref(y))
+
+    return (x.value, y.value)
+
+
+# - void uiWindowSetPosition(uiWindow *w, int x, int y);
+def uiWindowSetPosition(window, x, y):
+    """
+    Sets the window's position.
+
+    :param window: uiWindow
+    :param x: int
+    :param y: int
+    :return: None
+    """
+
+    clibui.uiWindowSetPosition(window, x, y)
+
+
+# - void uiWindowCenter(uiWindow *w);
+def uiWindowCenter(window):
+    """
+    Centers the window (horizontally ?) on screen.
+
+    :param window: uiWindow
+    :return: None
+    """
+
+    clibui.uiWindowCenter(window)
+
+
+# - void uiWindowOnPositionChanged(uiWindow *w, void (*f)(uiWindow *, void *), void *data);
+def uiWindowOnPositionChanged(window, callback, data):
+    """
+    Executes the callback function when window's position changed.
+
+    :param window: uiWindow
+    :param callback: function
+    :param data: data
+    :return: reference to C callback function
+    """
+
+    c_type = ctypes.CFUNCTYPE(
+        ctypes.c_int, ctypes.POINTER(uiWindow), ctypes.c_void_p)
+    c_callback = c_type(callback)
+
+    clibui.uiWindowOnPositionChanged(window, c_callback, data)
+
+    return c_callback
+
+
+# - void uiWindowContentSize(uiWindow *w, int *width, int *height);
+def uiWindowContentSize(window):
+    """
+    Returns the window's content size.
+
+    :param window: uiWindow
+    :return: tuple
+    """
+
+    width = ctypes.c_int()
+    height = ctypes.c_int()
+    clibui.uiWindowContentSize(window, ctypes.byref(width),
+                               ctypes.byref(height))
+
+    return (width.value, height.value)
+
+
+# - void uiWindowSetContentSize(uiWindow *w, int width, int height);
+def uiWindowSetContentSize(window, width, height):
+    """
+    Sets the window's content size.
+
+    :param window: uiWindow
+    :param width: int
+    :param height: int
+    :return: None
+    """
+
+    clibui.uiWindowSetContentSize(window, width, height)
+
+
+# - int uiWindowFullscreen(uiWindow *w);
+def uiWindowFullscreen(window):
+    """
+    Returns whether the window is in fullscreen.
+
+    :param window: uiWindow
+    :return: bool
+    """
+
+    return bool(clibui.uiWindowFullscreen(window))
+
+
+# - void uiWindowSetFullscreen(uiWindow *w, int fullscreen);
+def uiWindowSetFullscreen(window, fullscreen):
+    """
+    Sets whether the window is in fullscreen.
+
+    :param window: uiWindow
+    :param fullscreen: bool
+    :return: None
+    """
+
+    clibui.uiWindowSetFullscreen(window, fullscreen)
+
+
+# - void uiWindowOnContentSizeChanged(uiWindow *w, void (*f)(uiWindow *, void *), void *data);
+def uiWindowOnContentSizeChanged(window, callback, data):
+    """
+    Executes the callback function on window's content size change.
+
+    :param window: uiWindow
+    :param callback: function
+    :param data: data
+    :return: reference to C callback function
+    """
+
+    c_type = ctypes.CFUNCTYPE(
+        ctypes.c_int, ctypes.POINTER(uiWindow), ctypes.c_void_p)
+    c_callback = c_type(callback)
+
+    clibui.uiWindowOnContentSizeChanged(window, c_callback, data)
+
+    return c_callback
 
 
 # - void uiWindowOnClosing(uiWindow *w, int (*f)(uiWindow *w, void *data), void *data);
@@ -73,6 +211,31 @@ def uiWindowOnClosing(window, callback, data):
     return c_callback
 
 
+# - int uiWindowBorderless(uiWindow *w);
+def uiWindowBorderless(window):
+    """
+    Returns whether the window is borderless.
+
+    :param window: uiWindow
+    :return: bool
+    """
+
+    return bool(clibui.uiWindowBorderless(window))
+
+
+# - void uiWindowSetBorderless(uiWindow *w, int borderless);
+def uiWindowSetBorderless(window, borderless):
+    """
+    Sets whether the window is borderless.
+
+    :param window: uiWindow
+    :param borderless: bool
+    :return: None
+    """
+
+    clibui.uiWindowSetBorderless(window, borderless)
+
+
 # - void uiWindowSetChild(uiWindow *w, uiControl *child);
 def uiWindowSetChild(window, child):
     """
@@ -83,20 +246,17 @@ def uiWindowSetChild(window, child):
     :return: None
     """
 
-    return clibui.uiWindowSetChild(window, child)
+    clibui.uiWindowSetChild(window, child)
 
 
 # - int uiWindowMargined(uiWindow *w);
 def uiWindowMargined(window):
     """
-    Returns the window margined.
+    Returns the window's margins.
 
     :param window: uiWindow
     :return: int
     """
-
-    # Set return type
-    clibui.uiWindowMargined.restype = ctypes.c_int
 
     return clibui.uiWindowMargined(window)
 
@@ -104,14 +264,14 @@ def uiWindowMargined(window):
 # - void uiWindowSetMargined(uiWindow *w, int margined);
 def uiWindowSetMargined(window, margined):
     """
-    Sets the margins of the window
+    Sets the window's margins.
 
     :param window: uiWindow
     :param margined: int
     :return: None
     """
 
-    return clibui.uiWindowSetMargined(window, margined)
+    clibui.uiWindowSetMargined(window, margined)
 
 
 # - uiWindow *uiNewWindow(const char *title, int width, int height, int hasMenubar);

@@ -32,7 +32,6 @@ def uiButtonText(button):
     :param button: uiButton
     :return: string
     """
-    
     clibui.uiButtonText.restype = ctypes.c_char_p
     text = clibui.uiButtonText(button)
 
@@ -46,9 +45,11 @@ def uiButtonSetText(button, text):
 
     :param button: uiButton
     :param text: string
+    :return: None
     """
 
     clibui.uiButtonSetText(button, bytes(text, 'utf-8'))
+
 
 # - void uiButtonOnClicked(uiButton *b, void (*f)(uiButton *b, void *data), void *data);
 def uiButtonOnClicked(button, callback, data):
@@ -67,6 +68,7 @@ def uiButtonOnClicked(button, callback, data):
     clibui.uiButtonOnClicked(button, c_callback, data)
 
     return c_callback
+
 
 # - uiButton *uiNewButton(const char *text);
 def uiNewButton(text):

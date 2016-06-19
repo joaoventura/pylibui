@@ -1,10 +1,10 @@
 """
- Shows a simple slider.
+ Shows a simple spinbox.
 
 """
 
 from pylibui.core import App
-from pylibui.controls import Window, Slider
+from pylibui.controls import Window, Spinbox
 
 
 class MyWindow(Window):
@@ -14,20 +14,13 @@ class MyWindow(Window):
         app.stop()
 
 
-class MySlider(Slider):
-
-    def onChanged(self, data):
-        print(self.getValue())
-
-
 app = App()
 
 window = MyWindow('Window', 800, 600)
 window.setMargined(1)
 
-slider = MySlider(0, 100)
-slider.setValue(50)
-window.setChild(slider)
+spinbox = Spinbox(0, 100)
+window.setChild(spinbox)
 
 window.show()
 

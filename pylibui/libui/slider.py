@@ -24,10 +24,10 @@ def uiSliderPointer(obj):
     return ctypes.cast(obj, ctypes.POINTER(uiSlider))
 
 
-# - intmax_t uiSliderValue(uiSlider *s);
+# - int uiSliderValue(uiSlider *s);
 def uiSliderValue(slider):
     """
-    Returns the value of the lisder.
+    Returns the value of the slider.
 
     :param slider: uiSlider
     :return: int
@@ -36,16 +36,18 @@ def uiSliderValue(slider):
     return clibui.uiSliderValue(slider)
 
 
-# - void uiSliderSetValue(uiSlider *s, intmax_t value);
+# - void uiSliderSetValue(uiSlider *s, int value);
 def uiSliderSetValue(slider, value):
     """
     Sets the value of the slider.
 
     :param slider: uiSlider
     :param value: int
+    :return: None
     """
 
     clibui.uiSliderSetValue(slider, value)
+
 
 # - void uiSliderOnChanged(uiSlider *s, void (*f)(uiSlider *s, void *data), void *data);
 def uiSliderOnChanged(slider, callback, data):
@@ -65,7 +67,8 @@ def uiSliderOnChanged(slider, callback, data):
 
     return c_callback
 
-# - uiSlider *uiNewSlider(intmax_t min, intmax_t max);
+
+# - uiSlider *uiNewSlider(int min, int max);
 def uiNewSlider(min_value, max_value):
     """
     Creates a new slider.

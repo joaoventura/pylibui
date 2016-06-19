@@ -31,6 +31,35 @@ class Control:
         """
         libui.uiControlShow(self.pointer())
 
+    def hide(self):
+        """
+        Hides the control.
+
+        :return: None
+        """
+        libui.uiControlHide(self.pointer())
+
+    def getEnabled(self):
+        """
+        Returns whether the control is enabled.
+
+        :return: bool
+        """
+        libui.uiControlEnabled(self.pointer())
+
+    def setEnabled(self, enabled):
+        """
+        Enables or disables the control.
+
+        :param enabled: bool
+        :return: None
+        """
+
+        if enabled:
+            libui.uiControlEnable(self.pointer())
+        else:
+            libui.uiControlDisable(self.pointer())
+
     def destroy(self):
         """
         Destroys the control.

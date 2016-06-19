@@ -35,33 +35,32 @@ def uiBoxAppend(box, child, stretchy):
     :return: None
     """
 
-    return clibui.uiBoxAppend(box, child, stretchy)
+    clibui.uiBoxAppend(box, child, stretchy)
 
 
-# - void uiBoxDelete(uiBox *b, uintmax_t index);
-def uiBoxDelete(*args):
+# - void uiBoxDelete(uiBox *b, int index);
+def uiBoxDelete(box, index):
     """
-    Describe the function.
+    Deletes a child from a box.
 
-    :param args: arguments
-    :return: value
+    :param box: uiBox
+    :param index: int
+    :return: None
     """
 
-    # TODO
-    return clibui.uiBoxDelete()
+    clibui.uiBoxDelete(box, index)
 
 
 # - int uiBoxPadded(uiBox *b);
-def uiBoxPadded(*args):
+def uiBoxPadded(box):
     """
-    Describe the function.
+    Sets the padding of the box.
 
-    :param args: arguments
-    :return: value
+    :param box: uiBox
+    :return: int
     """
 
-    # TODO
-    return clibui.uiBoxPadded()
+    return clibui.uiBoxPadded(box)
 
 
 # - void uiBoxSetPadded(uiBox *b, int padded);
@@ -74,7 +73,7 @@ def uiBoxSetPadded(box, padded):
     :return: None
     """
 
-    return clibui.uiBoxSetPadded(box, padded)
+    clibui.uiBoxSetPadded(box, padded)
 
 
 # - uiBox *uiNewHorizontalBox(void);

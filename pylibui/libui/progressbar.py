@@ -24,7 +24,7 @@ def uiProgressBarPointer(obj):
     return ctypes.cast(obj, ctypes.POINTER(uiProgressBar))
 
 
-# - intmax_t uiProgressBarValue(uiProgressBar *p);
+# - int uiProgressBarValue(uiProgressBar *p);
 def uiProgressBarValue(progressbar):
     """
     Returns the value of the progress bar.
@@ -32,9 +32,8 @@ def uiProgressBarValue(progressbar):
     :param slider: uiProgressBar
     :return: int
     """
-    
-    raise NotImplementedError # TODO: currently not implemented in libui
-    # return clibui.uiProgressBarValue(progressbar)
+
+    return clibui.uiProgressBarValue(progressbar)
 
 
 # - void uiProgressBarSetValue(uiProgressBar *p, int n);
@@ -44,9 +43,11 @@ def uiProgressBarSetValue(progressbar, value):
 
     :param progressbar: uiProgressBar
     :param value: int
+    :return: None
     """
 
     clibui.uiProgressBarSetValue(progressbar, value)
+
 
 # - uiProgressBar *uiNewProgressBar(void);
 def uiNewProgressBar():

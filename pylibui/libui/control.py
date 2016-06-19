@@ -24,6 +24,56 @@ def uiControlPointer(obj):
     return ctypes.cast(obj, ctypes.POINTER(uiControl))
 
 
+# - void uiControlDestroy(uiControl *);
+def uiControlDestroy(control):
+    """
+    Frees the resources allocated by a control.
+
+    :param control: uiControl object
+    :return: None
+    """
+
+    return clibui.uiControlDestroy(control)
+
+
+# - uiControl *uiControlParent(uiControl *);
+def uiControlParent(control):
+    """
+    Returns the parent control.
+
+    :param control: uiControl
+    :return: uiControl
+    """
+
+    return clibui.uiControlParent(control)
+
+
+# - void uiControlSetParent(uiControl *, uiControl *);
+def uiControlSetParent(control, parent):
+    """
+    Sets the parent control.
+
+    :param control: uiControl
+    :param parent: uiControl
+    :return: None
+    """
+
+    return clibui.uiControlSetParent(control, parent)
+
+
+# - int uiControlVisible(uiControl *);
+def uiControlVisible(control):
+    """
+    Returns whether the control is visible.
+
+    :param control: uiControl
+    :return: uiControl
+    """
+
+    return clibui.uiControlVisible(control)
+
+
+# - void uiControlShow(uiControl *);
 def uiControlShow(control):
     """
     Shows a control.
@@ -35,12 +85,49 @@ def uiControlShow(control):
     return clibui.uiControlShow(control)
 
 
-def uiControlDestroy(control):
+# - void uiControlHide(uiControl *);
+def uiControlHide(control):
     """
-    Frees the resources allocated by a control
+    Hides a control.
 
     :param control: uiControl object
     :return: None
     """
 
-    return clibui.uiControlDestroy(control)
+    return clibui.uiControlHide(control)
+
+
+# - int uiControlEnabled(uiControl *);
+def uiControlEnabled(control):
+    """
+    Returns whether a control is enabled.
+
+    :param control: uiControl object
+    :return: bool
+    """
+
+    return bool(clibui.uiControlEnabled(control))
+
+
+# - void uiControlEnable(uiControl *);
+def uiControlEnable(control):
+    """
+    Enables a control.
+
+    :param control: uiControl object
+    :return: None
+    """
+
+    return clibui.uiControlEnable(control)
+
+
+# - void uiControlDisable(uiControl *);
+def uiControlDisable(control):
+    """
+    Disables a control.
+
+    :param control: uiControl object
+    :return: None
+    """
+
+    return clibui.uiControlDisable(control)
