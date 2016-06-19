@@ -51,6 +51,28 @@ to pylibui/libui/sharedlibs. Now, you can use pylibui:
     >>> import pylibui
 
 
+## Run Tests
+
+The tests are located in the `tests` folder. To run the entire test suite 
+execute the following in the outer pylibui directory: 
+
+    $ python3 -m unittest
+    ..
+    ----------------------------------------------------------------------
+    Ran 20 tests in 0.055s
+    
+    Ok
+
+To execute a single test file:
+ 
+    $ python3 -m unittest tests/test_window.py
+    ..
+    ----------------------------------------------------------------------
+    Ran 2 tests in 0.033s
+    
+    Ok
+    
+
 ## Contributing
 
 The project is divided in two major sections:
