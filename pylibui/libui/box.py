@@ -39,9 +39,9 @@ def uiBoxAppend(box, child, stretchy):
 
 
 # - void uiBoxDelete(uiBox *b, int index);
-def uiBoxDelete(box, index):  # TODO: description
+def uiBoxDelete(box, index):
     """
-    Describe the function.
+    Deletes a child from a box.
 
     :param box: uiBox
     :param index: int
@@ -52,9 +52,9 @@ def uiBoxDelete(box, index):  # TODO: description
 
 
 # - int uiBoxPadded(uiBox *b);
-def uiBoxPadded(box):  # TODO: description
+def uiBoxPadded(box):
     """
-    Describe the function.
+    Sets the padding of the box.
 
     :param box: uiBox
     :return: int
