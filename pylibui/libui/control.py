@@ -33,7 +33,7 @@ def uiControlDestroy(control):
     :return: None
     """
 
-    return clibui.uiControlDestroy(control)
+    clibui.uiControlDestroy(control)
 
 
 # - uiControl *uiControlParent(uiControl *);
@@ -58,7 +58,7 @@ def uiControlSetParent(control, parent):
     :return: None
     """
 
-    return clibui.uiControlSetParent(control, parent)
+    clibui.uiControlSetParent(control, parent)
 
 
 # - int uiControlVisible(uiControl *);
@@ -82,7 +82,7 @@ def uiControlShow(control):
     :return: None
     """
 
-    return clibui.uiControlShow(control)
+    clibui.uiControlShow(control)
 
 
 # - void uiControlHide(uiControl *);
@@ -94,7 +94,7 @@ def uiControlHide(control):
     :return: None
     """
 
-    return clibui.uiControlHide(control)
+    clibui.uiControlHide(control)
 
 
 # - int uiControlEnabled(uiControl *);
@@ -118,7 +118,7 @@ def uiControlEnable(control):
     :return: None
     """
 
-    return clibui.uiControlEnable(control)
+    clibui.uiControlEnable(control)
 
 
 # - void uiControlDisable(uiControl *);
@@ -130,4 +130,4 @@ def uiControlDisable(control):
     :return: None
     """
 
-    return clibui.uiControlDisable(control)
+    clibui.uiControlDisable(control)
