@@ -13,8 +13,8 @@ class TabTest(WindowTestCase):
         super().setUp()
         self.tab = Tab()
 
-    def test_can_append_pages_to_tab(self):
-        """Tests that we can append pages to tab."""
+    def test_append_pages(self):
+        """Tests that pages can be appended to a tab."""
         button = Button('my button')
         self.tab.append('my tab 1', button)
 
@@ -23,8 +23,8 @@ class TabTest(WindowTestCase):
 
         self.assertEqual(self.tab.getNumPages(), 2)
 
-    def test_can_append_pages_at_specified_index(self):
-        """Tests that we can append pages at a specified index."""
+    def test_append_page_at_index(self):
+        """Tests that pages can be appended at a specified index."""
         button = Button('my button')
         self.tab.append('my tab 1', button)
 
@@ -36,7 +36,7 @@ class TabTest(WindowTestCase):
         # button3 = Button('second button')
         # self.tab.insertAt('my tab 3', 10, button3) # non-existing page index
 
-    def test_can_delete_pages_from_tab(self):
+    def test_delete_pages(self):
         """Tests that we can delete pages from tab."""
         button = Button('my button')
         self.tab.append('my tab 1', button)
@@ -49,7 +49,7 @@ class TabTest(WindowTestCase):
         #       At the moment, the following code crashes:
         # self.tab.delete(40) # non-existing page index
 
-    def test_tab_margins(self):
+    def test_margins(self):
         """Tests that we can set/get the margins of the tab."""
 
         # we first have to add a page to the tab

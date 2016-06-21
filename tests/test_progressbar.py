@@ -13,10 +13,12 @@ class ProgressBarTest(WindowTestCase):
         super().setUp()
         self.progressbar = ProgressBar()
 
-    def test_value_attribute(self):
-        """Tests the progressbar's `value` attribute."""
+    def test_value_initial_value(self):
+        """Tests the progressbar's `value` initial value is zero."""
         self.assertEqual(self.progressbar.getValue(), 0)
 
+    def test_value_can_be_changed(self):
+        """Tests the progressbar's `value` attribute can be changed."""
         value = 30
         self.progressbar.setValue(value)
         self.assertEqual(self.progressbar.getValue(), value)

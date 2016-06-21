@@ -11,9 +11,14 @@ class ButtonTest(WindowTestCase):
 
     def setUp(self):
         super().setUp()
-        self.button = Button('My button')
+        self.button = Button('my button')
 
-    def test_text_attribute(self):
+    def test_text_initial_value(self):
+        """Tests the button's `text` initial value is the one passed to
+        constructor."""
+        self.assertEqual(self.button.getText(), 'my button')
+
+    def test_text_can_be_changed(self):
         """Tests the button text."""
         text = 'My new button'
         self.button.setText(text)
