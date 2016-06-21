@@ -31,6 +31,8 @@ class TabTest(WindowTestCase):
         button2 = Button('second button')
         self.tab.insertAt('my tab 1', 0, button2)
 
+        self.assertEqual(self.tab.getNumPages(), 2)
+
         # TODO: should we do a check on indexes when user calls `insertAt` ?
         #       At the moment, the following code crashes:
         # button3 = Button('second button')
@@ -40,7 +42,6 @@ class TabTest(WindowTestCase):
         """Tests that we can delete pages from tab."""
         button = Button('my button')
         self.tab.append('my tab 1', button)
-        self.assertEqual(self.tab.getNumPages(), 1)
 
         self.tab.delete(0)
         self.assertEqual(self.tab.getNumPages(), 0)
@@ -49,14 +50,18 @@ class TabTest(WindowTestCase):
         #       At the moment, the following code crashes:
         # self.tab.delete(40) # non-existing page index
 
-    def test_margins(self):
-        """Tests that we can set/get the margins of the tab."""
-
-        # we first have to add a page to the tab
+    def test_margins_initial_value(self):
+        """Tests the tab's `margin` initial value is zero."""
         button = Button('my button')
         self.tab.append('my tab 1', button)
 
         self.assertEqual(self.tab.getMargined(0), 0)
+
+    def test_margins_can_be_changed(self):
+        """Tests the tab's `margin` attribute can be changed."""
+        # we first have to add a page to the tab
+        button = Button('my button')
+        self.tab.append('my tab 1', button)
 
         margin = 20
         self.tab.setMargined(0, margin)
