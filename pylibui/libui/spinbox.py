@@ -33,7 +33,7 @@ def uiSpinboxValue(spinbox):
     :return: int
     """
 
-    return clibui.uiSpinbox(spinbox)
+    return clibui.uiSpinboxValue(spinbox)
 
 
 # - void uiSpinboxSetValue(uiSpinbox *s, int value);

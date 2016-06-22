@@ -23,6 +23,14 @@ class Control:
         """
         return libui.uiControlPointer(self.control)
 
+    def getVisible(self):
+        """
+        Returns whether the control is visible.
+
+        :return: bool
+        """
+        return libui.uiControlVisible(self.control)
+
     def show(self):
         """
         Shows the control.
@@ -45,7 +53,7 @@ class Control:
 
         :return: bool
         """
-        libui.uiControlEnabled(self.pointer())
+        return libui.uiControlEnabled(self.pointer())
 
     def setEnabled(self, enabled):
         """
