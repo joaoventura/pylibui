@@ -29,6 +29,7 @@ from .box import *
 from .button import *
 from .control import *
 from .checkbox import *
+from .entry import *
 from .label import *
 from .main import *
 from .progressbar import *
