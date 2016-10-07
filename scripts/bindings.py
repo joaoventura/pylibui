@@ -8,6 +8,9 @@
 
 """
 
+import sys
+section_name = sys.argv[1]
+
 
 def return_lines(filename, start, end):
     """
@@ -294,5 +297,9 @@ sections = {
 }
 
 
-contents = parse_section('window', 'ui.h')
-print(contents)
+contents = parse_section(section_name, 'ui.h')
+
+with open(section_name + "_binding.py", "w") as f:
+    f.write(contents)
+
+print("Bindings for", section_name, "generated successfully.")
