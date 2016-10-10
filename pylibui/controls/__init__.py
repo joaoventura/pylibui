@@ -6,6 +6,7 @@
 from .box import Box, HorizontalBox, VerticalBox
 from .button import Button
 from .control import Control
+from .combobox import Combobox
 from .checkbox import Checkbox
 from .label import Label
 from .progressbar import ProgressBar
