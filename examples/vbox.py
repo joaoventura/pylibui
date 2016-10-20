@@ -4,7 +4,7 @@
 """
 
 from pylibui.core import App
-from pylibui.controls import Window, Label, VerticalBox
+from pylibui.controls import Window, Label, VerticalBox, Button
 
 
 class MyWindow(Window):
@@ -14,10 +14,19 @@ class MyWindow(Window):
         app.stop()
 
 
+class MyButton(Button):
+
+    def onClick(self, data):
+        vbox.delete(0)
+        self.setEnabled(False)
+
+
 app = App()
 
 window = MyWindow('Window', 800, 600)
 window.setMargined(1)
+
+delete = MyButton("Delete 'Hello World!'")
 
 vbox = VerticalBox()
 vbox.setPadded(1)
@@ -25,6 +34,7 @@ window.setChild(vbox)
 
 vbox.append(Label('Hello World!'))
 vbox.append(Label('Goodbye World!'))
+vbox.append(delete)
 
 window.show()
 
