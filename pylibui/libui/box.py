@@ -60,7 +60,7 @@ def uiBoxPadded(box):
     :return: int
     """
 
-    return clibui.uiBoxPadded(box)
+    return bool(clibui.uiBoxPadded(box))
 
 
 # - void uiBoxSetPadded(uiBox *b, int padded);
