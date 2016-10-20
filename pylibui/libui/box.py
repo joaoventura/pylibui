@@ -54,7 +54,7 @@ def uiBoxDelete(box, index):
 # - int uiBoxPadded(uiBox *b);
 def uiBoxPadded(box):
     """
-    Sets the padding of the box.
+    Returns whether the box is padded.
 
     :param box: uiBox
     :return: int
