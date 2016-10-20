@@ -60,13 +60,13 @@ def uiBoxPadded(box):
     :return: int
     """
 
-    return bool(clibui.uiBoxPadded(box))
+    return clibui.uiBoxPadded(box)
 
 
 # - void uiBoxSetPadded(uiBox *b, int padded);
 def uiBoxSetPadded(box, padded):
     """
-    Sets the padding of the box.
+    Sets whether the box is padded.
 
     :param box: uiBox
     :param padded: int

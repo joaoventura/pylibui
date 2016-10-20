@@ -17,15 +17,15 @@ class Box(Control):
         super().__init__()
         self.children = []
 
-    def append(self, child, stretchy=0):
+    def append(self, child, stretchy=False):
         """
         Appends a child to the box.
 
         :param child: control
-        :param stretchy: int
+        :param stretchy: bool
         :return: None
         """
-        libui.uiBoxAppend(self.control, child.pointer(), stretchy)
+        libui.uiBoxAppend(self.control, child.pointer(), int(stretchy))
         self.children.append(child)
 
     def delete(self, index):
@@ -43,18 +43,18 @@ class Box(Control):
         """
         Returns whether the box is padded.
 
-        :return: int
+        :return: bool
         """
-        return libui.uiBoxPadded(self.control)
+        return bool(libui.uiBoxPadded(self.control))
 
     def setPadded(self, padded):
         """
-        Sets the padding of the box.
+        Sets whether the box is padded.
 
-        :param padded: int
+        :param padded: bool
         :return: None
         """
-        libui.uiBoxSetPadded(self.control, padded)
+        libui.uiBoxSetPadded(self.control, int(padded))
 
 
 class HorizontalBox(Box):
