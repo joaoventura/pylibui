@@ -13,7 +13,7 @@ class BaseEntry(Control):
         """
         Sets the text of the entry.
 
-        :param text: the text of the entry
+        :param text: string
         :return: None
         """
         libui.uiEntrySetText(self.control, text)
@@ -37,7 +37,7 @@ class BaseEntry(Control):
 
     def getReadOnly(self):
         """
-        Sets whether the entry is read only or not.
+        Returns whether the entry is read only or not.
 
         :return: bool
         """

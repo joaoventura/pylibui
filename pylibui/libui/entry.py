@@ -89,7 +89,7 @@ def uiEntrySetReadOnly(entry, read_only):
     Sets whether the entry is read only or not.
 
     :param entry: uiEntry
-    :param read_only: bool
+    :param read_only: int
     :return: None
     """
 

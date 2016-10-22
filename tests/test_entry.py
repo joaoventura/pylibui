@@ -12,8 +12,6 @@ class EntryTest(WindowTestCase):
     def setUp(self):
         super().setUp()
         self.entry = Entry()
-        self.password_entry = PasswordEntry()
-        self.search_entry = SearchEntry()
 
     def test_text_initial_value(self):
         """Tests the entry's `text` initial value is empty."""
