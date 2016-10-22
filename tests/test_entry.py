@@ -36,6 +36,3 @@ class EntryTest(WindowTestCase):
         """Tests the entry's `read_only` attribute can be set to False."""
         self.entry.setReadOnly(False)
         self.assertEqual(self.entry.getReadOnly(), False)
-
-    def test_onChanged_is_called(self):
-        raise  # TODO: how do we simulate mouse press ?

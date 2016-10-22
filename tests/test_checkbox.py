@@ -37,6 +37,3 @@ class CheckboxTest(WindowTestCase):
         """Tests the checkbox's `checked` attribute can be set to False."""
         self.checkbox.setChecked(False)
         self.assertEqual(self.checkbox.getChecked(), False)
-
-    def test_onToggle_is_called_when_user_toggles_checkbox(self):
-        raise  # TODO: how do we simulate mouse press ?
