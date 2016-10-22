@@ -24,6 +24,3 @@ class SliderTest(WindowTestCase):
         value = 30
         self.slider.setValue(value)
         self.assertEqual(self.slider.getValue(), value)
-
-    def test_onChanged_is_called_when_user_changes_sliders_value(self):
-        raise  # TODO: how do we simulate mouse press ?

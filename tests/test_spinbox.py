@@ -24,6 +24,3 @@ class SpinboxTest(WindowTestCase):
         value = 30
         self.spinbox.setValue(value)
         self.assertEqual(self.spinbox.getValue(), value)
-
-    def test_onChanged_is_called_when_user_changes_spinbox_value(self):
-        raise  # TODO: how do we simulate mouse press ?
