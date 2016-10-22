@@ -8,6 +8,7 @@ from .button import Button
 from .control import Control
 from .combobox import Combobox
 from .checkbox import Checkbox
+from .entry import Entry, PasswordEntry, SearchEntry
 from .label import Label
 from .progressbar import ProgressBar
 from .slider import Slider

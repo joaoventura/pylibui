@@ -66,7 +66,7 @@ def uiCheckboxOnToggled(checkbox, callback, data):
         ctypes.c_int, ctypes.POINTER(uiCheckbox), ctypes.c_void_p)
     c_callback = c_type(callback)
 
-    clibui.uiButtonOnClicked(checkbox, c_callback, data)
+    clibui.uiCheckboxOnToggled(checkbox, c_callback, data)
 
     return c_callback
 
