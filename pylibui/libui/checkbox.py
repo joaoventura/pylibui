@@ -77,10 +77,10 @@ def uiCheckboxChecked(checkbox):
     Returns whether the checkbox is checked or not.
 
     :param checkbox: uiCheckbox
-    :return: string
+    :return: int
     """
 
-    return bool(clibui.uiCheckboxChecked(checkbox))
+    return clibui.uiCheckboxChecked(checkbox)
 
 
 # - void uiCheckboxSetChecked(uiCheckbox *c, int checked);
@@ -89,7 +89,7 @@ def uiCheckboxSetChecked(checkbox, checked):
     Sets whether the checkbox is checked or not.
 
     :param checkbox: uiCheckbox
-    :param checked: bool
+    :param checked: int
     :return: None
     """
 

@@ -77,10 +77,10 @@ def uiEntryReadOnly(entry):
     Returns whether the entry is read only or not.
 
     :param entry: uiEntry
-    :return: string
+    :return: int
     """
 
-    return bool(clibui.uiEntryReadOnly(entry))
+    return clibui.uiEntryReadOnly(entry)
 
 
 # - void uiEntrySetReadOnly(uiEntry *e, int readonly);

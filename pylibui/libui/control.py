@@ -103,10 +103,10 @@ def uiControlEnabled(control):
     Returns whether a control is enabled.
 
     :param control: uiControl object
-    :return: bool
+    :return: int
     """
 
-    return bool(clibui.uiControlEnabled(control))
+    return clibui.uiControlEnabled(control)
 
 
 # - void uiControlEnable(uiControl *);

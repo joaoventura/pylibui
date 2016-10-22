@@ -53,7 +53,7 @@ class Control:
 
         :return: bool
         """
-        return libui.uiControlEnabled(self.pointer())
+        return bool(libui.uiControlEnabled(self.pointer()))
 
     def setEnabled(self, enabled):
         """

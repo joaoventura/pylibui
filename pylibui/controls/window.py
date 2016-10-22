@@ -119,7 +119,7 @@ class Window(Control):
 
         :return: bool
         """
-        return libui.uiWindowFullscreen(self.control)
+        return bool(libui.uiWindowFullscreen(self.control))
 
     def setFullscreen(self, fullscreen):
         """
@@ -154,7 +154,7 @@ class Window(Control):
 
         :return: bool
         """
-        return libui.uiWindowBorderless(self.control)
+        return bool(libui.uiWindowBorderless(self.control))
 
     def setBorderless(self, borderless):
         """
