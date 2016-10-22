@@ -9,13 +9,16 @@ from .control import Control
 
 class Combobox(Control):
 
-    def __init__(self):
+    def __init__(self, items=[]):
         """
         Creates a new combobox.
 
         """
         super().__init__()
         self.control = libui.uiNewCombobox()
+
+        for item in items:
+            self.append(item)
 
         def handlerOnSelected(combobox, data):
             self.onSelected(data)

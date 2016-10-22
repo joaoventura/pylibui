@@ -25,12 +25,9 @@ app = App()
 window = MyWindow('Window', 800, 600)
 window.setMargined(1)
 
-combobox = MyCombobox()
-combobox.append("Blue")
-combobox.append("Yellow")
-combobox.append("Green")
-combobox.append("Red")
-combobox.append("Pink")
+colors = ['Blue', 'Yellow', 'Green', 'Red']
+combobox = MyCombobox(colors)
+combobox.append('Pink')
 combobox.setSelected(3)
 
 window.setChild(combobox)
