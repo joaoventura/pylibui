@@ -19,7 +19,3 @@ class ComboboxTest(WindowTestCase):
         value = 0
         self.combobox.setSelected(value)
         self.assertEqual(self.combobox.selected(), value)
-
-    def test_can_pass_items_to_constructor(self):
-        """Tests user can pass items to the constructor of the combobox."""
-        combobox = Combobox(['Blue', 'Yellow', 'Red'])
