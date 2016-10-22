@@ -43,4 +43,4 @@ window.setChild(vbox)
 window.show()
 
 app.start()
-app.close()
+# app.close() # SEE https://github.com/joaoventura/pylibui/issues/18
