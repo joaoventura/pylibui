@@ -29,7 +29,7 @@ class Button(Control):
         """
         Sets the text of the button.
 
-        :param text: the text of the button
+        :param text: string
         :return: None
         """
         libui.uiButtonSetText(self.control, text)

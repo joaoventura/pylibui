@@ -27,14 +27,14 @@ class MyEntry(Entry):
 app = App()
 
 window = MyWindow('Entry example')
-window.setMargined(1)
+window.setMargined(True)
 
 entry = MyEntry()
 search_entry = SearchEntry()
 password_entry = PasswordEntry()
 
 vbox = VerticalBox()
-vbox.setPadded(1)
+vbox.setPadded(True)
 vbox.append(entry)
 vbox.append(search_entry)
 vbox.append(password_entry)

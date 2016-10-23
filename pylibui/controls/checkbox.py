@@ -48,7 +48,7 @@ class Checkbox(Control):
         :param checked: bool
         :return: None
         """
-        libui.uiCheckboxSetChecked(self.control, checked)
+        libui.uiCheckboxSetChecked(self.control, int(checked))
 
     def getChecked(self):
         """
@@ -56,7 +56,7 @@ class Checkbox(Control):
 
         :return: bool
         """
-        return libui.uiCheckboxChecked(self.control)
+        return bool(libui.uiCheckboxChecked(self.control))
 
     def onToggled(self, data):
         """

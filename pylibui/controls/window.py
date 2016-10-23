@@ -119,7 +119,7 @@ class Window(Control):
 
         :return: bool
         """
-        return libui.uiWindowFullscreen(self.control)
+        return bool(libui.uiWindowFullscreen(self.control))
 
     def setFullscreen(self, fullscreen):
         """
@@ -128,7 +128,7 @@ class Window(Control):
         :param fullscreen: bool
         :return: None
         """
-        libui.uiWindowSetFullscreen(self.control, fullscreen)
+        libui.uiWindowSetFullscreen(self.control, int(fullscreen))
 
     def onContentSizeChange(self, data):
         """
@@ -154,7 +154,7 @@ class Window(Control):
 
         :return: bool
         """
-        return libui.uiWindowBorderless(self.control)
+        return bool(libui.uiWindowBorderless(self.control))
 
     def setBorderless(self, borderless):
         """
@@ -163,7 +163,7 @@ class Window(Control):
         :param borderless: bool
         :return: None
         """
-        libui.uiWindowSetBorderless(self.control, borderless)
+        libui.uiWindowSetBorderless(self.control, int(borderless))
 
     def setChild(self, child):
         """
@@ -176,17 +176,17 @@ class Window(Control):
 
     def getMargined(self):
         """
-        Returns the window's margins.
+        Returns whether the window is margined or not.
 
-        :return: int
+        :return: bool
         """
-        return libui.uiWindowMargined(self.control)
+        return bool(libui.uiWindowMargined(self.control))
 
     def setMargined(self, margined):
         """
-        Sets the window's margins.
+        Sets whether the window is margined or not.
 
-        :param margined: int
+        :param margined: bool
         :return: None
         """
-        libui.uiWindowSetMargined(self.control, margined)
+        libui.uiWindowSetMargined(self.control, int(margined))

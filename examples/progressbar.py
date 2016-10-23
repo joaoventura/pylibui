@@ -17,7 +17,7 @@ class MyWindow(Window):
 app = App()
 
 window = MyWindow('Progress bar example')
-window.setMargined(1)
+window.setMargined(True)
 
 progressbar = ProgressBar()
 progressbar.setValue(60)

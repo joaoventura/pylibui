@@ -49,22 +49,22 @@ class Tab(Control):
 
     def setMargined(self, page, margined):
         """
-        Sets the margins of the tab.
+        Sets whether the tab's page is margined or not.
 
         :param page: int
-        :param margined: int
+        :param margined: bool
         :return: None
         """
-        libui.uiTabSetMargined(self.control, page, margined)
+        libui.uiTabSetMargined(self.control, page, int(margined))
 
     def getMargined(self, page):
         """
-        Returns the margins of the tab.
+        Returns whether the tab's page is margined or not.
 
         :param page: int
-        :return: int
+        :return: bool
         """
-        return libui.uiTabMargined(self.control, page)
+        return bool(libui.uiTabMargined(self.control, page))
 
     def getNumPages(self):
         """
