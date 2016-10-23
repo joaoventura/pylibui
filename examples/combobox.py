@@ -23,7 +23,7 @@ class MyCombobox(Combobox):
 app = App()
 
 window = MyWindow('Window', 800, 600)
-window.setMargined(1)
+window.setMargined(True)
 
 combobox = MyCombobox()
 combobox.append("Blue")

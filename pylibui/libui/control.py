@@ -67,7 +67,7 @@ def uiControlVisible(control):
     Returns whether the control is visible.
 
     :param control: uiControl
-    :return: uiControl
+    :return: int
     """
 
     return clibui.uiControlVisible(control)

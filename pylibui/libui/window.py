@@ -164,7 +164,7 @@ def uiWindowSetFullscreen(window, fullscreen):
     Sets whether the window is in fullscreen.
 
     :param window: uiWindow
-    :param fullscreen: bool
+    :param fullscreen: int
     :return: None
     """
 
@@ -229,7 +229,7 @@ def uiWindowSetBorderless(window, borderless):
     Sets whether the window is borderless.
 
     :param window: uiWindow
-    :param borderless: bool
+    :param borderless: int
     :return: None
     """
 

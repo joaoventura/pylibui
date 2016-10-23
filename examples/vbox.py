@@ -24,12 +24,12 @@ class MyButton(Button):
 app = App()
 
 window = MyWindow('Window', 800, 600)
-window.setMargined(1)
+window.setMargined(True)
 
 delete = MyButton("Delete 'Hello World!'")
 
 vbox = VerticalBox()
-vbox.setPadded(1)
+vbox.setPadded(True)
 window.setChild(vbox)
 
 vbox.append(Label('Hello World!'))

@@ -26,7 +26,7 @@ class MyButton(Button):
 app = App()
 
 window = MyWindow('Window', 800, 600)
-window.setMargined(1)
+window.setMargined(True)
 
 button = MyButton('click me')
 window.setChild(button)

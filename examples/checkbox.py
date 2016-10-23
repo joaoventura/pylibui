@@ -23,7 +23,7 @@ class MyCheckbox(Checkbox):
 app = App()
 
 window = MyWindow('Checkbox example')
-window.setMargined(1)
+window.setMargined(True)
 
 checkbox = MyCheckbox('a checkbox!')
 checkbox.setText('a checkbox')

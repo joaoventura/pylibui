@@ -26,7 +26,7 @@ class Combobox(Control):
 
     def append(self, text):
         """
-        Appends a new to the combobox.
+        Appends a new item to the combobox.
 
         :param text: string
         :return: None

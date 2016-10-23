@@ -17,7 +17,7 @@ class MyWindow(Window):
 app = App()
 
 window = MyWindow('Window', 400, 300)
-window.setMargined(1)
+window.setMargined(True)
 
 tab = Tab()
 
@@ -31,10 +31,10 @@ tabPage1.append(labelPage1)
 tabPage2.append(labelPage2)
 
 tab.append("Page 1", tabPage1)
-tab.setMargined(0, 1)
+tab.setMargined(0, True)
 
 tab.append("Page 2", tabPage2)
-tab.setMargined(1, 0)
+tab.setMargined(1, False)
 
 print("Number of pages: " + str(tab.getNumPages()))
 

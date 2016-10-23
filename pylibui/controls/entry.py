@@ -33,7 +33,7 @@ class BaseEntry(Control):
         :param read_only: bool
         :return: None
         """
-        libui.uiEntrySetReadOnly(self.control, read_only)
+        libui.uiEntrySetReadOnly(self.control, int(read_only))
 
     def getReadOnly(self):
         """

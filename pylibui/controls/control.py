@@ -29,7 +29,7 @@ class Control:
 
         :return: bool
         """
-        return libui.uiControlVisible(self.control)
+        return bool(libui.uiControlVisible(self.control))
 
     def show(self):
         """

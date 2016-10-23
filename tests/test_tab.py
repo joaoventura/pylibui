@@ -51,11 +51,11 @@ class TabTest(WindowTestCase):
         # self.tab.delete(40) # non-existing page index
 
     def test_margins_initial_value(self):
-        """Tests the tab's `margin` initial value is zero."""
+        """Tests the tab's `margin` initial value is False."""
         button = Button('my button')
         self.tab.append('my tab 1', button)
 
-        self.assertEqual(self.tab.getMargined(0), 0)
+        self.assertEqual(self.tab.getMargined(0), False)
 
     def test_margins_can_be_changed(self):
         """Tests the tab's `margin` attribute can be changed."""
@@ -63,9 +63,8 @@ class TabTest(WindowTestCase):
         button = Button('my button')
         self.tab.append('my tab 1', button)
 
-        margin = 20
-        self.tab.setMargined(0, margin)
-        self.assertEqual(self.tab.getMargined(0), margin)
+        self.tab.setMargined(0, True)
+        self.assertEqual(self.tab.getMargined(0), True)
 
         # TODO: should we do a check on indexes when user calls `getMargined` +
         #       `setMargined` ? At the moment, the following code crashes:
