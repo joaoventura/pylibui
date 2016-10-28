@@ -28,13 +28,6 @@ class Window(Control):
         self.closeHandler = libui.uiWindowOnClosing(self.control, handler,
                                                     None)
 
-        def handlerOnPositionChanged(window, data):
-            self.onPositionChange(data)
-            return 0
-
-        self.positionChangedHandler = libui.uiWindowOnPositionChanged(
-            self.control, handlerOnPositionChanged, None)
-
         def handlerOnContentSizeChanged(window, data):
             self.onContentSizeChange(data)
             return 0
@@ -58,42 +51,6 @@ class Window(Control):
         :return: None
         """
         libui.uiWindowSetTitle(self.control, title)
-
-    def getPosition(self):
-        """
-        Returns the window's position.
-
-        :return: tuple
-        """
-        return libui.uiWindowPosition(self.control)
-
-    def setPosition(self, x, y):
-        """
-        Sets the window's position.
-
-        :param window: uiWindow
-        :param x: int
-        :param y: int
-        :return: None
-        """
-        libui.uiWindowSetPosition(self.control, x, y)
-
-    def center(self):
-        """
-        Centers the window (horizontally ?) on screen.
-
-        :return: None
-        """
-        libui.uiWindowCenter(self.control)
-
-    def onPositionChange(self, data):
-        """
-        Executes when window's position changed.
-
-        :param data: data
-        :return: None
-        """
-        pass
 
     def getContentSize(self):
         """
