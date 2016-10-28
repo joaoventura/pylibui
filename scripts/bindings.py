@@ -8,6 +8,7 @@
 
 """
 
+from urllib import request
 import sys
 
 
@@ -296,12 +297,37 @@ sections = {
 }
 
 
+def check():
+    ui_h_url = "https://raw.githubusercontent.com/andlabs/libui/master/ui.h"
+    print("Downloading ui.h...")
+    try:
+        req = request.urlopen(ui_h_url)
+    except:
+        req = None
+        print("Couldn't fetch original ui.h.")
+
+    if req:
+        original_ui_h = req.read().decode("UTF-8")
+        req.close()
+        print("Download successful. Comparing with local copy...")
+        fil = open("ui.h")
+        ui_h = fil.read()
+        fil.close()
+        if ui_h != original_ui_h:
+            print("ui.h is outdated. Please inform pylibui maintainers.")
+            exit(1)
+        else:
+            print("ui.h is up-to-date.")
+
 if len(sys.argv) == 2:
-    section_name = sys.argv[1]
-    contents = parse_section(section_name, 'ui.h')
-    with open(section_name + ".py", "w") as f:
-        f.write(contents)
-    print("Bindings for", section_name, "created successfully.")
+    if sys.argv[1] == "download":
+        check()
+    else:
+        section_name = sys.argv[1]
+        contents = parse_section(section_name, 'ui.h')
+        with open(section_name + ".py", "w") as f:
+            f.write(contents)
+        print("Bindings for", section_name, "created successfully.")
 else:
     contents = parse_section("window", 'ui.h')
     print(contents)
