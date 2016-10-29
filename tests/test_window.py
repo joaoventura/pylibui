@@ -13,8 +13,3 @@ class WindowTest(WindowTestCase):
         title = 'New window'
         self.window.setTitle(title)
         self.assertEqual(self.window.getTitle(), title)
-
-    def test_window_position(self):
-        """Tests the window's position."""
-        self.window.setPosition(50, 50)
-        self.assertEqual(self.window.getPosition(), (50, 50))

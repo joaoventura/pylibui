@@ -53,68 +53,6 @@ def uiWindowSetTitle(window, title):
     clibui.uiWindowSetTitle(window, bytes(title, 'utf-8'))
 
 
-# - void uiWindowPosition(uiWindow *w, int *x, int *y);
-def uiWindowPosition(window):
-    """
-    Returns the window position.
-
-    :param window: uiWindow
-    :return: tuple
-    """
-
-    x = ctypes.c_int()
-    y = ctypes.c_int()
-    clibui.uiWindowPosition(window, ctypes.byref(x), ctypes.byref(y))
-
-    return (x.value, y.value)
-
-
-# - void uiWindowSetPosition(uiWindow *w, int x, int y);
-def uiWindowSetPosition(window, x, y):
-    """
-    Sets the window's position.
-
-    :param window: uiWindow
-    :param x: int
-    :param y: int
-    :return: None
-    """
-
-    clibui.uiWindowSetPosition(window, x, y)
-
-
-# - void uiWindowCenter(uiWindow *w);
-def uiWindowCenter(window):
-    """
-    Centers the window (horizontally ?) on screen.
-
-    :param window: uiWindow
-    :return: None
-    """
-
-    clibui.uiWindowCenter(window)
-
-
-# - void uiWindowOnPositionChanged(uiWindow *w, void (*f)(uiWindow *, void *), void *data);
-def uiWindowOnPositionChanged(window, callback, data):
-    """
-    Executes the callback function when window's position changed.
-
-    :param window: uiWindow
-    :param callback: function
-    :param data: data
-    :return: reference to C callback function
-    """
-
-    c_type = ctypes.CFUNCTYPE(
-        ctypes.c_int, ctypes.POINTER(uiWindow), ctypes.c_void_p)
-    c_callback = c_type(callback)
-
-    clibui.uiWindowOnPositionChanged(window, c_callback, data)
-
-    return c_callback
-
-
 # - void uiWindowContentSize(uiWindow *w, int *width, int *height);
 def uiWindowContentSize(window):
     """
