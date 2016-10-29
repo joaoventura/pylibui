@@ -207,6 +207,38 @@ def parse_section(name, filename):
     return parse_content(filename, line_start, line_end)
 
 
+def check_ui_h():
+    """
+    Downloads original ui.h file from andlabs' libui repository and compares
+    it with the local ui.h.
+
+    See https://github.com/joaoventura/pylibui/issues/40 for more information.
+
+    :return: None
+    """
+
+    ui_h_url = "https://raw.githubusercontent.com/andlabs/libui/master/ui.h"
+    print("Downloading ui.h...")
+    try:
+        req = request.urlopen(ui_h_url)
+    except:
+        req = None
+        print("Couldn't fetch original ui.h.")
+
+    if req:
+        original_ui_h = req.read().decode("UTF-8")
+        req.close()
+        print("Download successful. Comparing with local copy...")
+        fil = open("ui.h")
+        ui_h = fil.read()
+        fil.close()
+        if ui_h != original_ui_h:
+            print("ui.h is outdated. Please inform pylibui maintainers.")
+            exit(1)
+        else:
+            print("ui.h is up-to-date.")
+
+
 # You should regularly check the sections for the target 'ui.h' file.
 
 sections = {
@@ -297,31 +329,9 @@ sections = {
 }
 
 
-def check():
-    ui_h_url = "https://raw.githubusercontent.com/andlabs/libui/master/ui.h"
-    print("Downloading ui.h...")
-    try:
-        req = request.urlopen(ui_h_url)
-    except:
-        req = None
-        print("Couldn't fetch original ui.h.")
-
-    if req:
-        original_ui_h = req.read().decode("UTF-8")
-        req.close()
-        print("Download successful. Comparing with local copy...")
-        fil = open("ui.h")
-        ui_h = fil.read()
-        fil.close()
-        if ui_h != original_ui_h:
-            print("ui.h is outdated. Please inform pylibui maintainers.")
-            exit(1)
-        else:
-            print("ui.h is up-to-date.")
-
 if len(sys.argv) == 2:
     if sys.argv[1] == "download":
-        check()
+        check_ui_h()
     else:
         section_name = sys.argv[1]
         contents = parse_section(section_name, 'ui.h')
