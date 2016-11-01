@@ -27,7 +27,7 @@ def uiSeparatorPointer(obj):
 # - uiSeparator *uiNewHorizontalSeparator(void);
 def uiNewHorizontalSeparator():
     """
-    Describe the function.
+    Return a horizonal separator.
 
     :return: HorizontalSeparator
     """
@@ -38,11 +38,9 @@ def uiNewHorizontalSeparator():
 # - uiSeparator *uiNewVerticalSeparator(void);
 def uiNewVerticalSeparator():
     """
-    Describe the function.
+    Return a vertical separator.
 
     :return: VerticalSeparator
     """
-
-    #clibui.uiNewVerticalSeparator.restype = ctypes.POINTER(uiSeparator)
 
     return clibui.uiNewVerticalSeparator()
