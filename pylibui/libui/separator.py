@@ -27,7 +27,7 @@ def uiSeparatorPointer(obj):
 # - uiSeparator *uiNewHorizontalSeparator(void);
 def uiNewHorizontalSeparator():
     """
-    Returns an horizonal separator.
+    Returns a horizontal separator.
 
     :return: uiHorizontalSeparator
     """
@@ -41,7 +41,7 @@ def uiNewHorizontalSeparator():
 # - uiSeparator *uiNewVerticalSeparator(void);
 def uiNewVerticalSeparator():
     """
-    Returns aa vertical separator.
+    Returns a vertical separator.
 
     :return: uiVerticalSeparator
     """
