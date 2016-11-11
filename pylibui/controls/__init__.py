@@ -11,6 +11,7 @@ from .checkbox import Checkbox
 from .entry import Entry, PasswordEntry, SearchEntry
 from .label import Label
 from .progressbar import ProgressBar
+from .separator import HorizontalSeparator, VerticalSeparator
 from .slider import Slider
 from .spinbox import Spinbox
 from .tab import Tab
