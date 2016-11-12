@@ -14,7 +14,7 @@ class RadioButtonsTest(WindowTestCase):
         self.radio_buttons = RadioButtons()
 
     def test_set_selected(self):
-        """Tests the setSelected method of the combobox."""
+        """Tests the setSelected method of the radio buttons."""
         self.radio_buttons.append("option1")
         self.radio_buttons.append("option2")
         value = 1

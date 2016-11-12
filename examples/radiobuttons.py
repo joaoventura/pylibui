@@ -1,5 +1,5 @@
 """
- Shows a simple combobox.
+ Shows a simple radio buttons.
 
 """
 
