@@ -30,6 +30,7 @@ from .button import *
 from .control import *
 from .combobox import *
 from .checkbox import *
+from .datetimepicker import *
 from .entry import *
 from .label import *
 from .main import *
