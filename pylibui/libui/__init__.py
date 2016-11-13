@@ -31,6 +31,7 @@ from .control import *
 from .combobox import *
 from .checkbox import *
 from .entry import *
+from .group import *
 from .label import *
 from .main import *
 from .progressbar import *

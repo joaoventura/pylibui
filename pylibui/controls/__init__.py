@@ -9,6 +9,7 @@ from .control import Control
 from .combobox import Combobox
 from .checkbox import Checkbox
 from .entry import Entry, PasswordEntry, SearchEntry
+from .group import Group
 from .label import Label
 from .progressbar import ProgressBar
 from .radiobuttons import RadioButtons
