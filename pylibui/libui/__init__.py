@@ -34,6 +34,7 @@ from .entry import *
 from .label import *
 from .main import *
 from .progressbar import *
+from .radiobuttons import *
 from .separator import *
 from .slider import *
 from .spinbox import *
