@@ -7,17 +7,19 @@ import ctypes
 import os
 from ctypes.util import find_library
 
-LIB = find_library('ui')
+lib = find_library('ui')
 
 # if library is not present on the system
-if LIB is None:
+if lib is None:
   CURR_PATH = os.path.dirname(os.path.realpath(__file__))
   SHARED_LIBS_PATH = os.path.join(CURR_PATH, 'sharedlibs')
-  LIB = os.path.join(SHARED_LIBS_PATH, libname)
+  LIB_PATH = os.path.join(SHARED_LIBS_PATH, 'libui.so')
+else:
+  import sysconfig
+  LIB_PATH = os.path.join(sysconfig.get_config_var('LIBDIR'), lib)
 
-ctypes.cdll.LoadLibrary(LIB)
-clibui = ctypes.CDLL(LIB)
-
+ctypes.cdll.LoadLibrary(LIB_PATH)
+clibui = ctypes.CDLL(os.path.join(LIB_PATH))
 
 from .box import *
 from .button import *
