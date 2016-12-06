@@ -1,0 +1,14 @@
+python:
+  - "3.5"
+
+sudo: required
+
+before_install:
+  - "sudo apt-get -qq update"
+  - "sudo apt-get -qy install apt-transport-https curl"
+  - "echo 'deb https://packagecloud.io/waghanza/plunder/ubuntu/ trusty main' | sudo tee /etc/apt/sources.list.d/plunder.list"
+  - "sudo curl -sSL https://packagecloud.io/waghanza/plunder/gpgkey | sudo apt-key add -"
+  - "sudo apt-get -qq update"
+  - "sudo apt-get -qy install libui"
+
+script: python3 -m unittest
