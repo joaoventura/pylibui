@@ -5,21 +5,26 @@
 
 import ctypes
 import os
-from ctypes.util import find_library
 
-lib = find_library('ui')
-
-# if library is not present on the system
-if lib is None:
-  CURR_PATH = os.path.dirname(os.path.realpath(__file__))
-  SHARED_LIBS_PATH = os.path.join(CURR_PATH, 'sharedlibs')
-  LIB_PATH = os.path.join(SHARED_LIBS_PATH, 'libui.so')
+if os.path.exists('sharedlibs'):
+  current = os.path.dirname(os.path.realpath(__file__))
+  path = os.path.join(current, 'sharedlibs')
+  import platform
+  if platform.system() == 'Linux':
+    library = os.path.join(path, 'libui.so')
+  elif platform.system() == 'Darwin':
+    library = os.path.join(path, 'libui.dylib')
+  elif platform.system() == 'Windows':
+    library = os.path.join(path, 'libui.dll')
+  else:
+    raise RuntimeError('Unsupported platform')
 else:
   import sysconfig
-  LIB_PATH = os.path.join(sysconfig.get_config_var('LIBDIR'), lib)
+  from ctypes.util import find_library
+  library = os.path.join(sysconfig.get_config_var('LIBDIR'), find_library('ui'))
 
-ctypes.cdll.LoadLibrary(LIB_PATH)
-clibui = ctypes.CDLL(os.path.join(LIB_PATH))
+ctypes.cdll.LoadLibrary(library)
+clibui = ctypes.CDLL(os.path.join(library))
 
 from .box import *
 from .button import *
