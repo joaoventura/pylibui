@@ -21,7 +21,7 @@ before_install:
 install: sudo pip install tox-travis coverage
 
 script:
-  - [ `python -c "import sys;print(sys.version[0])"` -eq 2 ] && python -m unittest || python3 -m unittest
+  - [ `python -c "import sys;print(sys.version[0])"` == "2" ] && python -m unittest || python3 -m unittest
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
