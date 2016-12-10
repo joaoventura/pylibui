@@ -1,3 +1,14 @@
+addons:
+  apt:
+    sources:
+    - sourceline: 'deb https://packagecloud.io/waghanza/plunder/ubuntu/ trusty main'
+      key_url: 'https://packagecloud.io/waghanza/plunder/gpgkey'
+    packages:
+      - libui
+      - xvfb
+
+dist: trusty
+
 language: python
 
 python:
@@ -7,21 +18,17 @@ python:
   - "3.3"
   - "3.4"
   - "3.5"
+  - "3.5-dev"
+  - "3.6-dev"
+  - "nightly"
 
 sudo: required
-
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get -qy install apt-transport-https curl
-  - echo 'deb https://packagecloud.io/waghanza/plunder/ubuntu/ trusty main' | sudo tee /etc/apt/sources.list.d/plunder.list
-  - sudo curl -sSL https://packagecloud.io/waghanza/plunder/gpgkey | sudo apt-key add -
-  - sudo apt-get -qq update
-  - sudo apt-get -qy install libui libgtk-3-0
 
 install: sudo pip install tox-travis coverage
 
 script:
-  - [ `python -c "import sys;print(sys.version[0])"` == "2" ] && python -m unittest || python3 -m unittest
+  - "[ `python -c 'import sys;print(sys.version[0])'` == '3' ] && sudo python3 scripts/fix_travis.py || true"
+  - "[ `python -c 'import sys;print(sys.version[0])'` == '2' ] && python -m unittest || xvfb-run python3 -m unittest"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
