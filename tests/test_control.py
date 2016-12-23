@@ -15,8 +15,8 @@ class ControlTest(WindowTestCase):
         self.control = Control(libui.uiNewButton(''))
 
     def test_visible_initial_value(self):
-        """Tests the control's `visible` initial value is True."""
-        self.assertEqual(self.control.getVisible(), True)
+        """Tests the control's `visible` initial value is False."""
+        self.assertEqual(self.control.getVisible(), False)
 
     def test_show(self):
         """Tests the control can be shown."""
