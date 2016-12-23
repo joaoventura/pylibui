@@ -31,6 +31,7 @@ from .control import *
 from .combobox import *
 from .checkbox import *
 from .datetimepicker import *
+from .dialogs import *
 from .entry import *
 from .group import *
 from .label import *

@@ -147,3 +147,35 @@ class Window(Control):
         :return: None
         """
         libui.uiWindowSetMargined(self.control, int(margined))
+
+    def openFile(self):
+        """
+        Starts an open file dialog.
+
+        :return: string
+        """
+        return libui.uiOpenFile(self.control)
+
+    def saveFile(self):
+        """
+        Starts a save file dialog.
+
+        :return: string
+        """
+        return libui.uiSaveFile(self.control)
+
+    def showMessage(self, title, description):
+        """
+        Starts a message dialog.
+
+        :return: None
+        """
+        libui.uiMsgBox(self.control, title, description)
+
+    def showError(self, title, description):
+        """
+        Starts an error dialog.
+
+        :return: None
+        """
+        libui.uiMsgBoxError(self.control, title, description)
