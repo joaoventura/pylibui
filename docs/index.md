@@ -1,15 +1,15 @@
-A Python library for creating **desktop** application for :
+A Python library for creating **desktop** applications for :
 
 + Windows
 + Mac OS X
 + Linux (GTK)
 
-This library is a **wrapper** for the great [libui](https://github.com/andlabs/libui)
+This library is a **wrapper** for [libui](https://github.com/andlabs/libui).
 
 Installation
 ------------
 
-As `pylibui` in not **yet** stable, only `beta` version is available on [packagecloud](https://packagecloud.io/waghanza/pylibui/packages/python/pylibui-0.0.1-py2.py3-none-any.whl).
+As `pylibui` is not **yet** stable, only `beta` versions are available on [packagecloud](https://packagecloud.io/waghanza/pylibui/packages/python/pylibui-0.0.1-py2.py3-none-any.whl).
 
 ~~~sh
 pip install pylibui --extra-index-url=https://packagecloud.io/waghanza/pylibui/pypi/simple
@@ -18,7 +18,7 @@ pip install pylibui --extra-index-url=https://packagecloud.io/waghanza/pylibui/p
 Getting started
 ------------
 
-A simple **window** could be started using :
+A simple **window** application could be built using :
 
 ```python    
 from pylibui.core import App
