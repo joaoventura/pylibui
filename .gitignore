@@ -15,3 +15,6 @@ sharedlibs/
 
 # OS X
 .DS_Store
+
+pylibui/libui.py
+pylibui/libui_wrap.c
