@@ -2,26 +2,9 @@
  Python wrapper for libui.
 
 """
-
-import ctypes
-
+from .callback_helper import get_c_callback_func_ptr, c_func_type_int_structp_voidp, c_func_type_void_structp_voidp
 from pylibui import libui
 from .control import Control
-
-class uiWindow(ctypes.Structure):
-    """Wrapper for the uiWindow C struct."""
-
-    pass
-
-
-def uiWindowPointer(obj):
-    """
-    Casts an object to uiWindow pointer type.
-    :param obj: a generic object
-    :return: uiWindow
-    """
-
-    return ctypes.cast(obj, ctypes.POINTER(uiWindow))
 
 class Window(Control):
 
@@ -41,23 +24,18 @@ class Window(Control):
             self.onClose(data)
             return 0
 
-        c_type = ctypes.CFUNCTYPE(
-            ctypes.c_int, ctypes.POINTER(uiWindow), ctypes.c_void_p)
-        c_callback = c_type(handler)
-
-        c_handle_ptr = ctypes.cast(c_callback, ctypes.c_void_p).value
-
-        print(self.control, c_handle_ptr)
-
-        self.closeHandler = libui.uiWindowOnClosing(self.control, c_handle_ptr,
-                                                    None)
+        self.closeHandler = libui.uiWindowOnClosing(self.control,
+                                                        get_c_callback_func_ptr(handler, c_func_type_int_structp_voidp),
+                                                        None)
 
         def handlerOnContentSizeChanged(window, data):
             self.onContentSizeChange(data)
             return 0
 
-        #self.contentSizeChangedHandler = libui.uiWindowOnContentSizeChanged(
-        #    self.control, handlerOnContentSizeChanged, None)
+        self.contentSizeChangedHandler = libui.uiWindowOnContentSizeChanged(
+            self.control,
+            get_c_callback_func_ptr(handlerOnContentSizeChanged, c_func_type_void_structp_voidp),
+            None)
 
     def getTitle(self):
         """
