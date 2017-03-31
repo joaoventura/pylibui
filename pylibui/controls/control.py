@@ -29,7 +29,10 @@ class Control:
 
         :return: bool
         """
-        return bool(libui.uiControlVisible(self.control))
+        ret = libui.uiControlVisible(self.pointer())
+
+        print('control visible:', ret)
+        return bool(ret)
 
     def show(self):
         """

@@ -3,6 +3,7 @@
 
 """
 
+from .callback_helper import get_c_callback_func_ptr, c_func_type_void_structp_voidp
 from pylibui import libui
 from .control import Control
 
@@ -67,7 +68,8 @@ class Entry(BaseEntry):
             self.onChanged(data)
             return 0
 
-        self.changedHandler = libui.uiEntryOnChanged(self.control, handler,
+        self.changedHandler = libui.uiEntryOnChanged(self.control,
+                                                        get_c_callback_func_ptr(handler, c_func_type_void_structp_voidp),
                                                      None)
 
 
@@ -85,7 +87,8 @@ class PasswordEntry(Entry):
             self.onChanged(data)
             return 0
 
-        self.changedHandler = libui.uiEntryOnChanged(self.control, handler,
+        self.changedHandler = libui.uiEntryOnChanged(self.control,
+                                                        get_c_callback_func_ptr(handler, c_func_type_void_structp_voidp),
                                                      None)
 
 
@@ -103,5 +106,6 @@ class SearchEntry(Entry):
             self.onChanged(data)
             return 0
 
-        self.changedHandler = libui.uiEntryOnChanged(self.control, handler,
+        self.changedHandler = libui.uiEntryOnChanged(self.control,
+                                                        get_c_callback_func_ptr(handler, c_func_type_void_structp_voidp),
                                                      None)

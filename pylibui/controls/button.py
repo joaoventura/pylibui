@@ -3,6 +3,7 @@
 
 """
 
+from .callback_helper import get_c_callback_func_ptr, c_func_type_int_structp_voidp, c_func_type_void_structp_voidp
 from pylibui import libui
 from .control import Control
 
@@ -22,7 +23,8 @@ class Button(Control):
             self.onClick(data)
             return 0
 
-        self.clickHandler = libui.uiButtonOnClicked(self.control, handler,
+        self.clickHandler = libui.uiButtonOnClicked(self.control,
+                                                        get_c_callback_func_ptr(handler, c_func_type_void_structp_voidp),
                                                     None)
 
     def setText(self, text):

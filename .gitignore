@@ -18,3 +18,6 @@ sharedlibs/
 
 pylibui/libui.py
 pylibui/libui_wrap.c
+
+*.so
+*.dylib
