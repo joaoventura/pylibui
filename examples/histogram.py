@@ -27,10 +27,6 @@ class MyColorButton(ColorButton):
         super().onColorChanged(data)
         histogram.redrawAll()
 
-class MyArea(Area):
-    def __init__(self):
-        super().__init__(MyAreaHandler())
-
 xoffLeft = 20
 yoffTop = 20
 xoffRight = 20
@@ -89,8 +85,11 @@ def constructGraph(width, height, extend):
 
     return path
 
-class MyAreaHandler(AreaHandler):
-    def onDraw(self, a, params):
+class MyArea(Area):
+    def __init__(self):
+        super().__init__()
+
+    def onDraw(self, params):
         brush = libui.uiDrawBrush()
         brush.R = 1.0
         brush.G = 1.0
@@ -186,7 +185,7 @@ class MyAreaHandler(AreaHandler):
             libui.uiDrawFill(params.Context, path, brush)
             libui.uiDrawFreePath(path)
 
-    def onMouseEvent(self, area, e):
+    def onMouseEvent(self, e):
         graphWidth, graphHeight = graphSize(e.AreaWidth, e.AreaHeight)
         xs, ys = pointLocations(graphWidth, graphHeight)
 
@@ -200,7 +199,7 @@ class MyAreaHandler(AreaHandler):
         currentPoint = found
         
         #TODO only redraw the relevant area
-        area.redrawAll()
+        self.redrawAll()
         
 app = App()
 

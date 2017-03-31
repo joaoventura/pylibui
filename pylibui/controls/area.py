@@ -14,30 +14,32 @@ from .callback_helper import c_func_type_void_structp_structp_int
 from pylibui import libui
 from .control import Control
 
-class AreaHandler(libui.uiAreaHandler):
-    def __init__(self, *args, **kwargs):
+class _AreaHandler(libui.uiAreaHandler):
+    def __init__(self, area, *args, **kwargs):
         super().__init__()
+
+        self._area = area
 
         def handleOnDraw(ah, a, params):
             _draw_params = libui.toUIAreaDrawParamsPointer(params)
 
-            self.onDraw(self._area, _draw_params)
+            self._area.onDraw(_draw_params)
 
         def handleOnMouseEvent(ah, a, event):
             _mouse_event = libui.toUIAreaMouseEventPointer(event)
 
-            self.onMouseEvent(self._area, _mouse_event)
+            self._area.onMouseEvent(_mouse_event)
 
         def handleOnMouseCrossed(ah, a, left):
-            self.onMouseCrossed(self._area, left)
+            self._area.onMouseCrossed(left)
 
         def handleOnDragBroken(ah, a):
-            self.onDragBroken(self._area)
+            self._area.onDragBroken()
 
         def handleOnKeyEvent(ah, a, event):
             _key_event = libui.toUIAreaKeyEventPointer(event)
 
-            return self.onKeyEvent(self._area, _key_event)
+            return self._area.onKeyEvent(_key_event)
 
         self.Draw = get_c_callback_func_ptr(handleOnDraw,
                                                 c_func_type_void_structp_structp_structp)
@@ -50,31 +52,16 @@ class AreaHandler(libui.uiAreaHandler):
         self.KeyEvent = get_c_callback_func_ptr(handleOnKeyEvent,
                                                 c_func_type_int_structp_structp_structp)
 
-    def onDraw(self, a, params):
-        pass
-
-    def onMouseEvent(self, a, event):
-        pass
-
-    def onMouseCrossed(self, a, left):
-        pass
-
-    def onDragBroken(self, a):
-        pass
-
-    def onKeyEvent(self, a, event):
-        return 0
-
 class Area(Control):
 
-    def __init__(self, ah, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         """
         Creates a new Area.
 
         """
         super().__init__()
-        self.control = self._createControl(ah, args, kwargs)
-        ah._area = self
+        self._ah = _AreaHandler(self)
+        self.control = self._createControl(self._ah, args, kwargs)
 
     def _createControl(self, ah, *args, **kwargs):
         return libui.uiNewArea(ah)
@@ -122,9 +109,24 @@ class Area(Control):
         '''
         libui.uiAreaBeginUserWindowResize(self.control, edge)
 
+    def onDraw(self, params):
+        pass
+
+    def onMouseEvent(self, event):
+        pass
+
+    def onMouseCrossed(self, left):
+        pass
+
+    def onDragBroken(self):
+        pass
+
+    def onKeyEvent(self, event):
+        return 0
+
 class ScrollingArea(Area):
-    def __init__(self, ah, w, h):
-        super().__init__(ah, w, h)
+    def __init__(self, w, h):
+        super().__init__(w, h)
 
     def _createControl(self, ah, *args, **kwargs):
         w, h = args
