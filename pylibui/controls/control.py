@@ -31,7 +31,6 @@ class Control:
         """
         ret = libui.uiControlVisible(self.pointer())
 
-        print('control visible:', ret)
         return bool(ret)
 
     def show(self):
