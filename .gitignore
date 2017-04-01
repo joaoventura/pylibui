@@ -21,3 +21,4 @@ pylibui/libui_wrap.c
 
 *.so
 *.dylib
+.eggs/
