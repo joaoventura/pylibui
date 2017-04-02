@@ -1,8 +1,6 @@
 # pylibui
 
-[![Build Status](https://travis-ci.org/joaoventura/pylibui.svg)](https://travis-ci.org/joaoventura/pylibui)
-
-Python3 wrapper for [libui](https://github.com/andlabs/libui/). It uses ctypes 
+Python3 wrapper for [libui](https://github.com/andlabs/libui/). It uses [swig](http://www.swig.org/) 
 to interface with the libui shared library.
 
 
@@ -35,7 +33,7 @@ app.close()
 
 Clone pylibui:
 
-    $ git clone https://github.com/joaoventura/pylibui
+    $ git clone https://github.com/stonewell/pylibui
 
 Clone [libui](https://github.com/andlabs/libui/) and build the shared library: 
 
@@ -46,8 +44,13 @@ Clone [libui](https://github.com/andlabs/libui/) and build the shared library:
     $ cmake ..
     $ make
 
-The libui shared library will be inside libui/build/out. Copy the contents of out/ 
-to pylibui/libui/sharedlibs. Now, you can use pylibui:
+The libui shared library will be inside libui/build/out.
+
+Build and install pylibui
+python3 setup.py build_ext -I<libui path> --swig-opts="-I<libui path>" -L<libui path>/build/out install
+cp libui/build/out/libui* to pylibui installation path, For unix user, donot copy the symbol link libui.so
+
+Now, you can use pylibui:
 
     $ python3
     >>> import pylibui
@@ -75,27 +78,3 @@ To execute a single test file:
     Ok
     
 
-## Contributing
-
-The project is divided in two major sections:
-
-* pylibui.libui: a ctypes wrapper around the libui C shared library. 
-* pylibui: an object oriented pythonic wrapper that makes calls to pylibui.libui.
- 
-If you want to contribute, these are the two places that you can implement some
-code and make a pull request. 
-
-If the functionality you are looking for is still not implemented in the 
-pylibui.libui ctypes wrapper, there's two things you may need to do:
-
-* Implement the function if the function header is already declared (it will have
-a TODO in there).
-* Generate the function. Use the bindings.py script in scripts/ to generate most 
-of the function declarations for a given section of the "ui.h" header file. 
- 
-If you need to use the bindings.py file, just run it changing the section that 
-you want to generate the bindings, copy-paste the contents to an empty file, and
-implement the ctypes calls. Most of them are easy, but you can check what's already
-done for some guidance.
-
-I'm accepting pull requests if the code is clean and it comes with a working example.
