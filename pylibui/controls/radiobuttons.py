@@ -3,6 +3,7 @@ Python wrapper for libui.
 
 """
 
+from .callback_helper import get_c_callback_func_ptr, c_func_type_int_structp_voidp, c_func_type_void_structp_voidp
 from pylibui import libui
 from .control import Control
 
@@ -25,7 +26,9 @@ class RadioButtons(Control):
             return 0
 
         self.selectedHandler = libui.uiRadioButtonsOnSelected(
-            self.control, handlerOnSelected, None)
+            self.control,
+            get_c_callback_func_ptr(handlerOnSelected, c_func_type_void_structp_voidp),
+            None)
 
     def append(self, text):
         """

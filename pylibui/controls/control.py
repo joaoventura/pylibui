@@ -21,7 +21,7 @@ class Control:
 
         :return: uiControl ctype pointer
         """
-        return libui.uiControlPointer(self.control)
+        return libui.toUIControlPointer(self.control)
 
     def getVisible(self):
         """
@@ -29,7 +29,9 @@ class Control:
 
         :return: bool
         """
-        return bool(libui.uiControlVisible(self.control))
+        ret = libui.uiControlVisible(self.pointer())
+
+        return bool(ret)
 
     def show(self):
         """

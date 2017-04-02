@@ -2,10 +2,9 @@
  Python wrapper for libui.
 
 """
-
+from .callback_helper import get_c_callback_func_ptr, c_func_type_int_structp_voidp, c_func_type_void_structp_voidp
 from pylibui import libui
 from .control import Control
-
 
 class Window(Control):
 
@@ -25,15 +24,18 @@ class Window(Control):
             self.onClose(data)
             return 0
 
-        self.closeHandler = libui.uiWindowOnClosing(self.control, handler,
-                                                    None)
+        self.closeHandler = libui.uiWindowOnClosing(self.control,
+                                                        get_c_callback_func_ptr(handler, c_func_type_int_structp_voidp),
+                                                        None)
 
         def handlerOnContentSizeChanged(window, data):
             self.onContentSizeChange(data)
             return 0
 
         self.contentSizeChangedHandler = libui.uiWindowOnContentSizeChanged(
-            self.control, handlerOnContentSizeChanged, None)
+            self.control,
+            get_c_callback_func_ptr(handlerOnContentSizeChanged, c_func_type_void_structp_voidp),
+            None)
 
     def getTitle(self):
         """

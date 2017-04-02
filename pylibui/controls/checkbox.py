@@ -3,6 +3,7 @@
 
 """
 
+from .callback_helper import get_c_callback_func_ptr, c_func_type_void_structp_voidp
 from pylibui import libui
 from .control import Control
 
@@ -21,7 +22,8 @@ class Checkbox(Control):
             self.onToggled(data)
             return 0
 
-        self.toggledHandler = libui.uiCheckboxOnToggled(self.control, handler,
+        self.toggledHandler = libui.uiCheckboxOnToggled(self.control,
+                                                        get_c_callback_func_ptr(handler, c_func_type_void_structp_voidp),
                                                         None)
 
     def setText(self, text):
