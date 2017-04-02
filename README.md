@@ -47,7 +47,9 @@ Clone [libui](https://github.com/andlabs/libui/) and build the shared library:
 The libui shared library will be inside libui/build/out.
 
 Build and install pylibui
-python3 setup.py build_ext -I<libui path> --swig-opts="-I<libui path>" -L<libui path>/build/out install
+
+    python3 setup.py build_ext -I<libui path> --swig-opts="-I<libui path>" -L<libui path>/build/out install
+    
 cp libui/build/out/libui* to pylibui installation path, For unix user, donot copy the symbol link libui.so
 
 Now, you can use pylibui:
