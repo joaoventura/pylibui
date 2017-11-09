@@ -15,6 +15,7 @@ if not lib:
     curr_path = os.path.dirname(os.path.realpath(__file__))
     lib_dir = os.path.join(curr_path, 'sharedlibs')
 
+    import platform
     ext_hash = { 'darwin': 'dylib', 'windows': 'dll', 'linux': 'so' }
     try:
         ext = ext_hash.get( platform.system().lower())
