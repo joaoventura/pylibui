@@ -14,7 +14,16 @@ lib = ctypes.util.find_library('ui')
 if not lib:
     curr_path = os.path.dirname(os.path.realpath(__file__))
     lib_dir = os.path.join(curr_path, 'sharedlibs')
-    lib = os.path.join(lib_dir, libname)
+
+    ext_hash = { 'darwin': 'dylib', 'windows': 'dll', 'linux': 'so' }
+    try:
+        ext = ext_hash.get( platform.system().lower())
+    except KeyError:
+        import sys
+        raise RuntimeError( 'Extension type npt found for %', platform.system().lower() )
+        sys.exit(1)
+
+    lib = os.path.join(lib_dir, ('libui.%s' % ext))
 
 ctypes.cdll.LoadLibrary(lib)
 clibui = ctypes.CDLL(lib)
