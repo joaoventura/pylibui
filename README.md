@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/joaoventura/pylibui.svg)](https://travis-ci.org/joaoventura/pylibui)
 
-Python3 wrapper for [libui](https://github.com/andlabs/libui/). It uses ctypes 
+Python3 wrapper for [libui](https://github.com/andlabs/libui/). It uses **ctypes**
 to interface with the libui shared library.
 
 
