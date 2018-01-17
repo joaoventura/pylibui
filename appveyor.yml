@@ -1,0 +1,32 @@
+environment:
+  matrix:
+    - PYTHON: "C:\\Python27"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "32"
+
+    - PYTHON: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7.x"
+      PYTHON_ARCH: "64"
+
+    - PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5.0"
+      PYTHON_ARCH: "32"
+
+    - PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5.0"
+      PYTHON_ARCH: "64"
+
+before_build:
+  - mkdir c:\projects\libui
+  - git clone git://github.com/andlabs/libui.git c:\projects\libui
+  - cd c:\projects\libui
+  - mkdir build
+  - cd build
+  - cmake .. -G "Visual Studio 14 2015" -DCMAKE_BUILD_TYPE=Release
+  - msbuild "C:\projects\libui\build\libui.sln" /verbosity:normal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+  - mkdir c:\projects\pylibui\pylibui\libui\sharedlibs
+  - cp c:\projects\libui\build\out\Debug\libui.dll c:\projects\pylibui\pylibui\libui\sharedlibs
+  - cd c:\projects\pylibui
+
+build_script:
+  - python -m unittest
