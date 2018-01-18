@@ -1,9 +1,9 @@
 from distutils.core import setup
-
+from setuptools import find_packages
 
 setup(
     name='pylibui',
     version='0.0.1',
     description='Python wrapper for libui',
-    packages=['pylibui', 'pylibui.libui']
+    packages=find_packages()
 )
