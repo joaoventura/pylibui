@@ -7,6 +7,9 @@ addons:
 
 language: python
 
+# Use travis caching feature to speed-up the builds
+cache: pip
+
 dist: trusty
 
 matrix:
