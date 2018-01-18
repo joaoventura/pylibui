@@ -4,25 +4,30 @@
 """
 
 import ctypes
+import ctypes.util
 import os
-import platform
 
+# Find system library
+lib = ctypes.util.find_library('ui')
 
-if platform.system() == 'Darwin':
-    libname = 'libui.dylib'
-elif platform.system() == 'Windows':
-    libname = 'libui.dll'
-elif platform.system() == 'Linux':
-    libname = 'libui.so'
+# If system library is not available, use embedded one
+if not lib:
+    curr_path = os.path.dirname(os.path.realpath(__file__))
+    lib_dir = os.path.join(curr_path, 'sharedlibs')
 
+    import platform
+    ext_hash = { 'darwin': 'dylib', 'windows': 'dll', 'linux': 'so' }
+    try:
+        ext = ext_hash.get( platform.system().lower())
+    except KeyError:
+        import sys
+        raise RuntimeError( 'Extension type npt found for %', platform.system().lower() )
+        sys.exit(1)
 
-CURR_PATH = os.path.dirname(os.path.realpath(__file__))
-SHARED_LIBS_PATH = os.path.join(CURR_PATH, 'sharedlibs')
-SHARED_LIBS = os.path.join(SHARED_LIBS_PATH, libname)
+    lib = os.path.join(lib_dir, ('libui.%s' % ext))
 
-
-ctypes.cdll.LoadLibrary(SHARED_LIBS)
-clibui = ctypes.CDLL(SHARED_LIBS)
+ctypes.cdll.LoadLibrary(lib)
+clibui = ctypes.CDLL(lib)
 
 
 from .box import *
