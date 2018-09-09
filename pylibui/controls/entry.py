@@ -71,7 +71,7 @@ class Entry(BaseEntry):
                                                      None)
 
 
-class PasswordEntry(Entry):
+class PasswordEntry(BaseEntry):
 
     def __init__(self):
         """
@@ -89,7 +89,7 @@ class PasswordEntry(Entry):
                                                      None)
 
 
-class SearchEntry(Entry):
+class SearchEntry(BaseEntry):
 
     def __init__(self):
         """
