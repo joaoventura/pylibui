@@ -38,6 +38,7 @@ from .checkbox import *
 from .datetimepicker import *
 from .dialogs import *
 from .entry import *
+from .form import *
 from .group import *
 from .label import *
 from .main import *

@@ -10,6 +10,7 @@ from .combobox import Combobox
 from .checkbox import Checkbox
 from .datetimepicker import DateTimePicker, DatePicker, TimePicker
 from .entry import Entry, PasswordEntry, SearchEntry
+from .form import Form
 from .group import Group
 from .label import Label
 from .progressbar import ProgressBar
