@@ -41,6 +41,7 @@ from .entry import *
 from .group import *
 from .label import *
 from .main import *
+from .multilineentry import *
 from .progressbar import *
 from .radiobuttons import *
 from .separator import *
