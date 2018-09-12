@@ -13,6 +13,7 @@ from .entry import Entry, PasswordEntry, SearchEntry
 from .form import Form
 from .group import Group
 from .label import Label
+from .multilineentry import MultilineEntry, NonWrappingMultilineEntry
 from .progressbar import ProgressBar
 from .radiobuttons import RadioButtons
 from .separator import HorizontalSeparator, VerticalSeparator
