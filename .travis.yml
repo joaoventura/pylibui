@@ -37,7 +37,7 @@ before_script:
   - export BASE_DIR=$PWD && cd `mktemp -d` && export TEMP_LIB_DIR=$PWD && git clone https://github.com/andlabs/libui . && mkdir build && cd build && cmake .. && make && cd $BASE_DIR
 
 script:
-  - mkdir pylibui/libui/sharedlibs
+  - if [ ! -d pylibui/libui/sharedlibs ]; then mkdir pylibui/libui/sharedlibs ; fi
   - cp -f $TEMP_LIB_DIR/build/out/* pylibui/libui/sharedlibs/
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then xvfb-run python -m unittest ; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then python -m unittest ; fi
