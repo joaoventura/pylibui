@@ -1,8 +1,8 @@
 # pylibui
 
-[![Build Status](https://travis-ci.org/joaoventura/pylibui.svg)](https://travis-ci.org/joaoventura/pylibui)
+<!-- [![Build Status](https://travis-ci.org/joaoventura/pylibui.svg)](https://travis-ci.org/joaoventura/pylibui) -->
 
-Python3 wrapper for [libui](https://github.com/andlabs/libui/). It uses ctypes 
+Python3 wrapper for [libui](https://github.com/andlabs/libui/) and [libui-ng](https://github.com/libui-ng/libui-ng). It uses ctypes 
 to interface with the libui shared library.
 
 
@@ -37,16 +37,15 @@ Clone pylibui:
 
     $ git clone https://github.com/joaoventura/pylibui
 
-Clone [libui](https://github.com/andlabs/libui/) and build the shared library: 
+Clone [libui-ng](https://github.com/libui-ng/libui-ng)(recommended) or [libui](https://github.com/andlabs/libui/) and build the shared library: 
 
-    $ git clone https://github.com/andlabs/libui/
-    $ cd libui
-    $ mkdir build
-    $ cd build
-    $ cmake ..
-    $ make
+    $ git clone https://github.com/libui-ng/libui-ng
+    $ cd libui-ng
+    $ # in the top-level libui-ng directory run:
+    $ meson setup build [options]
+    $ ninja -C build
 
-The libui shared library will be inside libui/build/out. Copy the contents of out/ 
+The libui-ng shared library will be inside build/meson-out/. Copy the contents of it 
 to pylibui/libui/sharedlibs. Now, you can use pylibui:
 
     $ python3
