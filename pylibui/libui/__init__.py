@@ -21,7 +21,7 @@ if not lib:
         ext = ext_hash.get( platform.system().lower())
     except KeyError:
         import sys
-        raise RuntimeError( 'Extension type npt found for %', platform.system().lower() )
+        raise RuntimeError( 'Extension type not found for %', platform.system().lower() )
         sys.exit(1)
 
     lib = os.path.join(lib_dir, ('libui.%s' % ext))
@@ -50,3 +50,4 @@ from .slider import *
 from .spinbox import *
 from .tab import *
 from .window import *
+from .grid import *

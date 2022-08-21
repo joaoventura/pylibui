@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='pylibui',
-    version='0.0.1',
+    version='0.0.1.1',
     description='Python wrapper for libui',
     packages=find_packages()
 )
